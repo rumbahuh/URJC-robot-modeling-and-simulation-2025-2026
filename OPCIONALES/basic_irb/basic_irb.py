@@ -14,8 +14,21 @@ startPosition = [0, 0, 1]
 
 robotId = p.loadURDF("basic_irb.urdf", startPosition, startOrientation)
 
-for i in range (10000):
-    p.stepSimulation()
-    time.sleep(1./240.)
+hor_id = p.addUserDebugParameter("horizontalMotor", -1.57, 1.57, 0)
+ver_id = p.addUserDebugParameter("verticalMotor", -0.14, 0.14, 0)
+
+try:
+    while True:
+        p.stepSimulation()
+        time.sleep(1./240.)
+
+        hor_value = p.readUserDebugParameter(hor_id)
+        ver_value = p.readUserDebugParameter(ver_id)
+        
+        p.setJointMotorControl2(robotId,1, p.VELOCITY_CONTROL, targetVelocity=hor_value)
+        p.setJointMotorControl2(robotId,0, p.VELOCITY_CONTROL, targetVelocity=ver_value)
+        
+except KeyboardInterrupt:
+      pass
 
 p.disconnect()
