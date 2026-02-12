@@ -20,6 +20,11 @@ startPosition = [0, 10, 1]
 
 rampId = p.loadURDF("ramp.urdf", startPosition, startOrientation)
 
+startOrientation = p.getQuaternionFromEuler(euler_angles)
+startPosition = [0, 21, 1]
+
+rampId = p.loadURDF("finish_line.urdf", startPosition, startOrientation)
+
 try:
     while True:
         p.stepSimulation()
