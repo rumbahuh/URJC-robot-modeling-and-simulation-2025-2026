@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<robot name="ramp">
+    
+    <material name="blue">
+        <color rgba="0 0 0.8 1" />
+    </material>
+
+    <link name="base_link">
+        
+        <inertial>
+            <origin xyz="0 0 0.1" />
+            <mass value="10000.0" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+            iyy="1.0" iyz="0.0" izz="1.0" />
+
+        </inertial>
+        <visual>        
+            <origin xyz="0 0 0.1" /> <!-- No cambiamos los origin porque añaden desfase, no es lo mismo que startPosition -->
+            <geometry>
+                <box size="2 4 1.4" />
+            </geometry>
+            <material name="blue"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0.1" />
+            <geometry>
+             <box size="2 4 1.4" />
+            </geometry>
+        </collision>
+
+    </link>
+
+</robot>

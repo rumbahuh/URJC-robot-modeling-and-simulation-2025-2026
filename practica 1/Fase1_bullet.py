@@ -12,7 +12,13 @@ euler_angles = [0, 0, 1.57] # Inicia con rotación en eje z
 startOrientation = p.getQuaternionFromEuler(euler_angles)
 startPosition = [0, 0, 1]
 
-robotId = p.loadURDF("husky/husky.urdf", startPosition, startOrientation)
+huskyId = p.loadURDF("husky/husky.urdf", startPosition, startOrientation)
+
+euler_angles = [0, 0, 0]
+startOrientation = p.getQuaternionFromEuler(euler_angles)
+startPosition = [0, 10, 1]
+
+rampId = p.loadURDF("ramp.urdf", startPosition, startOrientation)
 
 try:
     while True:
