@@ -35,24 +35,24 @@
     <link name="ramp0_link">
 
         <inertial>
-            <origin rpy="63.43 0 0" xyz="0 2 0.75" /> <!-- theta = arcsin(1.5/sqr(11.25)) -->
+            <origin rpy="0 0 0" xyz="0 0 0.1" /> <!-- theta = arcsin(1.5/sqr(11.25)) -->
             <mass value="1.0" />
             <inertia ixx="1.0" ixy="0.0" ixz="0.0"
             iyy="0.0" iyz="0.0" izz="1.0" />
 
         </inertial>
         <visual>        
-            <origin rpy="63.43 0 0" xyz="0 2 0.75" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-                <box size="2 3.35 0.1" />
+                <box size="2 3.35 0.07" />
             </geometry>
             <material name="blue"/>
         </visual>
 
         <collision>
-            <origin rpy="63.43 0 0" xyz="0 2 0.75" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-             <box size="2 3.35 0.1" />
+             <box size="2 3.35 0.07" />
             </geometry>
         </collision>
 
@@ -62,7 +62,42 @@
         <parent link="base_link" />
         <child link="ramp0_link" />
         <dynamics damping="0.0" friction="0.00001" />
-        <origin xyz="0 2 0.75" />
+        <origin rpy="0.4636 0 0" xyz="0 -3.45 0" />
+
+        <limit lower="-0.14" upper="0.14" effort="10.0" velocity="0.5" />
+    </joint>
+
+    <link name="rampf_link">
+
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0.1" /> <!-- theta = arcsin(1.5/sqr(11.25)) -->
+            <mass value="1.0" />
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+            iyy="0.0" iyz="0.0" izz="1.0" />
+
+        </inertial>
+        <visual>        
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
+            <geometry>
+                <box size="2 3.35 0.07" />
+            </geometry>
+            <material name="blue"/>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
+            <geometry>
+             <box size="2 3.35 0.07" />
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="base_to_rampf" type="fixed">
+        <parent link="base_link" />
+        <child link="rampf_link" />
+        <dynamics damping="0.0" friction="0.00001" />
+        <origin rpy="-0.4636 0 0" xyz="0 3.45 0" />
 
         <limit lower="-0.14" upper="0.14" effort="10.0" velocity="0.5" />
     </joint>
