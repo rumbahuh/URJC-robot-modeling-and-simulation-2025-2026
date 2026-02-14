@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="finish_line">
+<robot name="bar">
 
     <material name="red">
         <color rgba="1 0 0 1" />
@@ -18,7 +18,7 @@
         <visual>        
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <box size="0.1 0.1 0.5" />
+                <box size="0.1 0.1 0.6" />
             </geometry>
             <material name="red"/>
         </visual>
@@ -26,7 +26,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-             <box size="0.1 0.1 0.8" />
+             <box size="0.1 0.1 0.6" />
             </geometry>
         </collision>
 
@@ -53,8 +53,7 @@
     <joint name="base_to_body" type="revolute">
         <parent link="base_link" />
         <child link="body_link" />
-        <dynamics damping="0.0" friction="0.00001" />
-        <origin xyz="0 0 0.14493" /> <!-- Altura del chassis delantero según el código urdf del husky -->
+        <origin xyz="0 0 0.02" />
         <axis xyz="0 0 1" /> <!--Rotación en eje z-->
 
         <limit lower="-0.14" upper="0.14" effort="10.0" velocity="0.5" />

@@ -18,7 +18,7 @@
         <visual>        
             <origin xyz="0 0 0.1" /> <!-- No cambiamos los origin porque añaden desfase, no es lo mismo que startPosition -->
             <geometry>
-                <box size="2 4 1.4" />
+                <box size="2 4 1.5" />
             </geometry>
             <material name="blue"/>
         </visual>
@@ -26,7 +26,7 @@
         <collision>
             <origin xyz="0 0 0.1" />
             <geometry>
-             <box size="2 4 1.4" />
+             <box size="2 4 1.5" />
             </geometry>
         </collision>
 
@@ -44,7 +44,7 @@
         <visual>        
             <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-                <box size="2 3.35 0.07" />
+                <box size="2 3.35 0.001" />
             </geometry>
             <material name="blue"/>
         </visual>
@@ -52,7 +52,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-             <box size="2 3.35 0.07" />
+             <box size="2 3.35 0.001" />
             </geometry>
         </collision>
 
@@ -61,7 +61,6 @@
     <joint name="base_to_ramp0" type="fixed">
         <parent link="base_link" />
         <child link="ramp0_link" />
-        <dynamics damping="0.0" friction="0.00001" />
         <origin rpy="0.4636 0 0" xyz="0 -3.45 0" />
 
         <limit lower="-0.14" upper="0.14" effort="10.0" velocity="0.5" />
@@ -79,7 +78,7 @@
         <visual>        
             <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-                <box size="2 3.35 0.07" />
+                <box size="2 3.35 0.001" />
             </geometry>
             <material name="blue"/>
         </visual>
@@ -87,7 +86,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-             <box size="2 3.35 0.07" />
+             <box size="2 3.35 0.001" />
             </geometry>
         </collision>
 
@@ -96,7 +95,6 @@
     <joint name="base_to_rampf" type="fixed">
         <parent link="base_link" />
         <child link="rampf_link" />
-        <dynamics damping="0.0" friction="0.00001" />
         <origin rpy="-0.4636 0 0" xyz="0 3.45 0" />
 
         <limit lower="-0.14" upper="0.14" effort="10.0" velocity="0.5" />
