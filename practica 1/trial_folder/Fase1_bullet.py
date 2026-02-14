@@ -8,7 +8,7 @@ p.setGravity(0, 0, -9.8)
 
 planeId = p.loadURDF("plane.urdf")
 
-euler_angles = [0, 0, 1.57] # Initiates figure rotated 90 degrees on Z axis
+euler_angles = [0, 0, 1.57] # Inicia con rotación en eje z
 startOrientation = p.getQuaternionFromEuler(euler_angles)
 startPosition = [0, 0, 1]
 
@@ -30,20 +30,49 @@ startPosition = [-1.5, 17, 1]
 
 barId = p.loadURDF("bar.urdf", startPosition, startOrientation)
 
-husky_wheel_joints = [2, 3, 4, 5]
+hor_id = p.addUserDebugParameter("horizontalMotor", -1.57, 1.57, 0)
+speedId = p.addUserDebugParameter("HUSKY_speed", 0, 100, 5)
+forceId = p.addUserDebugParameter("HUSKY_force", 0, 100, 5)
+
+########
+#numJoints = p.getNumJoints(huskyId)
+#print("NumJoints: " + str(numJoints))
+
+#for j in range (numJoints):
+#    print("%d - %s" % (p.getJointInfo(huskyId,j)[0], p.getJointInfo(huskyId,j)[1].decode("utf-8")))
+
+# NumJoints: 10
+# 0 - chassis_joint
+# 1 - imu_joint
+# 2 - front_left_wheel
+# 3 - front_right_wheel
+# 4 - rear_left_wheel
+# 5 - rear_right_wheel
+# 6 - top_plate
+# 7 - user_rail
+# 8 - front_bumper
+# 9 - rear_bumper
+
+#####
+husky_wheel_joints = [2,3,4,5]
 
 try:
     while True:
         p.stepSimulation()
         time.sleep(1./240.)
 		
+        hor_value = p.readUserDebugParameter(hor_id)
+        speed = p.readUserDebugParameter(speedId)
         speed = 12
-        torque = 20
+        torque = p.readUserDebugParameter(forceId)
+        torque = 20        
+        p.setJointMotorControl2(barId,0, p.VELOCITY_CONTROL, targetVelocity=hor_value)
         p.setJointMotorControlArray(huskyId,
                                     husky_wheel_joints,
                                     p.VELOCITY_CONTROL,
                                     targetVelocities=[speed,speed,speed,speed],
                                     forces=[torque,torque,torque,torque])
+
 
 except KeyboardInterrupt:
       pass
