@@ -4,6 +4,7 @@ import time
 import csv
 
 Y = 1
+RADIUS_WHEELS = 0.165
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -40,7 +41,7 @@ log_y_next = 0.01
 
 with open('Fase2_data.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
-    writer.writerow(['tiempo', 'y', 'velocidad_ruedas', 'fuerza_ruedas'])
+    writer.writerow(['tiempo', 'y', 'vy', 'velocidad_ruedas', 'fuerza_ruedas'])
 
 try:
 	while True:
@@ -65,12 +66,14 @@ try:
 		if (posicion_robot[Y] >= log_y_next):
 			tiempo = time.time()
 			y = posicion_robot[Y]
-			velocidad_ruedas = speed * 0.165
-			fuerza_ruedas =  torque / 0.165
+			linear_velocity, angular_velocity = p.getBaseVelocity(huskyId, physicsClient)
+			vy = linear_velocity[Y]
+			velocidad_ruedas = speed * RADIUS_WHEELS
+			fuerza_ruedas =  torque / RADIUS_WHEELS
 
 			with open('Fase2_data.csv', 'a', newline='') as csvfile:
 				writer = csv.writer(csvfile)
-				writer.writerow([tiempo, y, velocidad_ruedas, fuerza_ruedas])
+				writer.writerow([tiempo, y, vy, velocidad_ruedas, fuerza_ruedas])
 			
 			if(log_y_next >= 20):
 				break
