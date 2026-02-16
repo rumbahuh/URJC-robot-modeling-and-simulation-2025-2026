@@ -37,9 +37,18 @@ barId = p.loadURDF("bar.urdf", startPosition, startOrientation)
 
 
 husky_wheel_joints = [2, 3, 4, 5]
+for wheel in husky_wheel_joints:
+    p.changeDynamics(
+        huskyId,
+        wheel,
+        lateralFriction=0.93,
+        spinningFriction=0.005,
+        rollingFriction=0.003
+    )
+
 log_y_next = 0.01
 
-with open('Fase2_data.csv', 'w', newline='') as csvfile:
+with open('Fase3_1_data.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['tiempo', 'y', 'vy', 'velocidad_ruedas', 'fuerza_ruedas'])
 
@@ -50,8 +59,12 @@ try:
 		posicion_robot, orientation_robot = p.getBasePositionAndOrientation(huskyId, physicsClient)
 			
 		if (posicion_robot[Y] < 20):
-			speed = 11 / RADIUS_WHEELS # w = v/r
-			torque = 34 * RADIUS_WHEELS # trq = Fr
+			speed = 7.2 / RADIUS_WHEELS # w = v/r
+			torque = 53 * RADIUS_WHEELS # trq = Fr
+			# Estos valores fueron los necesarios para que pudiera
+			# subir la rampa de manera que hubiera equilibrio entre
+			# torque y velocidad de ruedas
+			# Los valores se obtuvieron a prueba y error
 		else:
 			speed = 0
 			torque = 0
