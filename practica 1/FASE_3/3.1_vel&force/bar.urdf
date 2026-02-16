@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<robot name="bar">
+
+    <material name="red">
+        <color rgba="1 0 0 1" />
+    </material>
+
+    <link name="base_link">
+        <visual>        
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0.1 0.1 0.6" />
+            </geometry>
+            <material name="red"/>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+             <box size="0.1 0.1 0.6" />
+            </geometry>
+        </collision>
+
+    </link>
+
+    <link name="body_link">
+        <visual>        
+            <origin rpy="0 0 0" xyz="0.85 0 0" />
+            <geometry>
+                <box size="2 0.1 0.1" />
+            </geometry>
+            <material name="red"/>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0.85 0 0" />
+            <geometry>
+             <box size="2 0.1 0.1" /> <!-- Preguntar ALTURA DEL CHASSIS ESPECIFICACION POSIBILIDAD DE SUSPENSO-->
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="base_to_body" type="revolute">
+        <parent link="base_link" />
+        <child link="body_link" />
+        <origin xyz="0 0 0.14493" />
+        <axis xyz="0 0 1" /> <!--Rotation on Z axis-->
+
+        <limit lower="0" upper="1.5708" effort="10.0" velocity="0.5" /> <!--Permitted rotation on 90 degrees range-->
+    </joint>
+
+</robot>
