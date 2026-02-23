@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 
-<robot name="arm_robot">
+<robot name="ramp">
+    
+    <material name="blue">
+        <color rgba="0 0 0.8 1" />
+    </material>
 
     <link name="base_link">
 
@@ -12,97 +16,87 @@
 
         </inertial>
         <visual>        
-            <origin xyz="0 0 0.1" />
+            <origin xyz="0 0 0.1" /> <!-- No cambiamos los origin porque añaden desfase, no es lo mismo que startPosition -->
             <geometry>
-                <box size="0.4 0.4 0.2" />
+                <box size="2 4 1.5" />
             </geometry>
+            <material name="blue"/>
         </visual>
 
         <collision>
             <origin xyz="0 0 0.1" />
             <geometry>
-             <box size="0.4 0.4 0.2" />
+             <box size="2 4 1.5" />
             </geometry>
         </collision>
 
     </link>
 
-    <material name="blue">
-        <color rgba="0 0 0.8 1" />
-    </material>
-
-    # Vertical azul
-    <link name="body_link">
+    <link name="ramp0_link">
 
         <inertial>
-            <origin rpy="0 0 0" xyz="0.5 0 0" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" /> <!-- theta = arcsin(1.5/sqr(11.25)) -->
             <mass value="1.0" />
             <inertia ixx="1.0" ixy="0.0" ixz="0.0"
             iyy="0.0" iyz="0.0" izz="1.0" />
 
         </inertial>
         <visual>        
-            <origin rpy="0 0 0" xyz="0.5 0 0" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-                <box size="0.1 0.1 0.8" />
+                <box size="2 3.35 0.001" />
             </geometry>
             <material name="blue"/>
         </visual>
 
         <collision>
-            <origin rpy="0 0 0" xyz="0.5 0 0" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-             <box size="0.1 0.1 0.8" />
+             <box size="2 3.35 0.001" />
             </geometry>
         </collision>
 
     </link>
 
-    <joint name="base_to_body" type="revolute">
+    <joint name="base_to_ramp0" type="fixed">
         <parent link="base_link" />
-        <child link="body_link" />
-        <dynamics damping="0.0" friction="0.00001" />
-        <origin xyz="0.05 0 0.1" />
-        <axis xyz="0 1 0" /> <!--Rotación en eje y-->
+        <child link="ramp0_link" />
+        <origin rpy="0.4636 0 0" xyz="0 -3.45 0" />
 
         <limit lower="-0.14" upper="0.14" effort="10.0" velocity="0.5" />
     </joint>
 
-    # Horizontal azul
-    <link name="arm_link">
+    <link name="rampf_link">
+
         <inertial>
-            <origin rpy="0 0 0" xyz="0.15 0 0" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" /> <!-- theta = arcsin(1.5/sqr(11.25)) -->
             <mass value="1.0" />
             <inertia ixx="1.0" ixy="0.0" ixz="0.0"
             iyy="0.0" iyz="0.0" izz="1.0" />
 
         </inertial>
         <visual>        
-            <origin rpy="0 0 0" xyz="0.15 0 0" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-                <box size="0.4 0.1 0.1" />
+                <box size="2 3.35 0.001" />
             </geometry>
             <material name="blue"/>
         </visual>
 
         <collision>
-            <origin rpy="0 0 0" xyz="0.15 0 0" />
+            <origin rpy="0 0 0" xyz="0 0 0.1" />
             <geometry>
-             <box size="0.4 0.1 0.1" />
+             <box size="2 3.35 0.001" />
             </geometry>
         </collision>
 
     </link>
 
-    <joint name="body_to_arm" type="revolute">
-        <parent link="body_link" />
-        <child link="arm_link" />
-        <dynamics damping="0.0" friction="0.00001" />
-        <origin xyz="0.05 0 0.9" /> <!-- Encima de body_link -->
-        <axis xyz="0 0 1" /> <!--Rotación en eje z-->
+    <joint name="base_to_rampf" type="fixed">
+        <parent link="base_link" />
+        <child link="rampf_link" />
+        <origin rpy="-0.4636 0 0" xyz="0 3.45 0" />
 
         <limit lower="-0.14" upper="0.14" effort="10.0" velocity="0.5" />
     </joint>
-
-
 </robot>

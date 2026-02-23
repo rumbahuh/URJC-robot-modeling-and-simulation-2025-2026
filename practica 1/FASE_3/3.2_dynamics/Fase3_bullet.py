@@ -49,7 +49,7 @@ for wheel in husky_wheel_joints:
 
 log_y_next = 0.01
 
-with open('Fase3_1_data.csv', 'w', newline='') as csvfile:
+with open('Fase3_2_data.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['tiempo', 'y', 'vy', 'velocidad_ruedas', 'fuerza_ruedas', 'error'])
 
@@ -85,18 +85,18 @@ try:
 			velocidad_ruedas = speed * RADIUS_WHEELS # v = wr
 			fuerza_ruedas =  torque / RADIUS_WHEELS # F = trq/r
 
-			with open('Fase3_1_data.csv', 'a', newline='') as csvfile:
+			with open('Fase3_2_data.csv', 'a', newline='') as csvfile:
 				writer = csv.writer(csvfile)
 				if velocidad_ruedas != 0:
 					error = TARGET_VELOCITY - vy
 				else:
 					error = 0
-
+					
 				writer.writerow([tiempo, y, vy, velocidad_ruedas, fuerza_ruedas, error])
 			
 			if(log_y_next >= 20):
 				break
-			log_y_next += 0.01
+			log_y_next = posicion_robot[Y] + 0.01
 
 except KeyboardInterrupt:
 	pass

@@ -12,7 +12,7 @@
         <child link="base_link"/>
         <origin xyz="0 0 0.3"/>
     </joint>
-    
+
     <link name="base_link">
         <visual>        
             <origin rpy="0 0 0" xyz="0 0 0" />
@@ -32,6 +32,13 @@
     </link>
 
     <link name="body_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="5.0" />
+            <inertia ixx="2.204166666666666" ixy="0.0" ixz="0.0"
+            iyy="0.0" iyz="0.0" izz="2.204166666666666" /> <!-- Inertia for bar rotating in end is 1/3ml^2 -->
+
+        </inertial>
         <visual>        
             <origin rpy="0 0 0" xyz="0.85 0 0" />
             <geometry>
@@ -55,7 +62,7 @@
         <origin xyz="0 0 0.02" />
         <axis xyz="0 0 1" /> <!--Rotation on Z axis-->
 
-        <limit lower="0" upper="1.5708" effort="10.0" velocity="0.5" /> <!--Permitted rotation on 90 degrees range-->
+        <limit lower="0" upper="3.14" effort="10.0" velocity="0.5" /> <!--Permitted rotation on 90 degrees range-->
     </joint>
 
 

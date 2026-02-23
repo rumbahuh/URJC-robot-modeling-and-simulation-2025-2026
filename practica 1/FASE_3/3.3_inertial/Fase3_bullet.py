@@ -1,8 +1,11 @@
 import pybullet as p
 import pybullet_data
 import time
+import csv
 
 Y = 1
+RADIUS_WHEELS = 0.165
+TARGET_VELOCITY = 2.0
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -29,23 +32,40 @@ startPosition = [0, 20, 1]
 finishLineId = p.loadURDF("finish_line.urdf", startPosition, startOrientation)
 
 startOrientation = p.getQuaternionFromEuler(euler_angles)
-startPosition = [-1.5, 17, 1]
+startPosition = [-1.5, 17, 0.01]
 
 barId = p.loadURDF("bar.urdf", startPosition, startOrientation)
 
 
 husky_wheel_joints = [2, 3, 4, 5]
+for wheel in husky_wheel_joints:
+    p.changeDynamics(
+        huskyId,
+        wheel,
+        lateralFriction=0.93,
+        spinningFriction=0.005,
+        rollingFriction=0.003
+    )
+
+log_y_next = 0.01
+
+with open('Fase3_3_data.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(['tiempo', 'y', 'vy', 'velocidad_ruedas', 'fuerza_ruedas', 'error'])
 
 try:
 	while True:
-		p.stepSimulation()
-		time.sleep(1./240.)
+		p.setRealTimeSimulation(1)
 
 		posicion_robot, orientation_robot = p.getBasePositionAndOrientation(huskyId, physicsClient)
 			
 		if (posicion_robot[Y] < 20):
-			speed = 12 # angular
-			torque = 20
+			speed = 7.2 / RADIUS_WHEELS # w = v/r
+			torque = 53 * RADIUS_WHEELS # trq = Fr
+			# Estos valores fueron los necesarios para que pudiera
+			# subir la rampa de manera que hubiera equilibrio entre
+			# torque y velocidad de ruedas
+			# Los valores se obtuvieron a prueba y error
 		else:
 			speed = 0
 			torque = 0
@@ -56,14 +76,27 @@ try:
 									targetVelocities=[speed,speed,speed,speed],
 									forces=[torque,torque,torque,torque])
 		
-
 		# Specification for analysis
-		if ((posicion_robot[Y] % 0.01) == 0):
-			time_ = time.time()
+		if (posicion_robot[Y] >= log_y_next):
+			tiempo = time.time()
 			y = posicion_robot[Y]
-			v = speed * 0.165
-			f =  torque / 0.165
+			linear_velocity, angular_velocity = p.getBaseVelocity(huskyId, physicsClient)
+			vy = linear_velocity[Y]
+			velocidad_ruedas = speed * RADIUS_WHEELS # v = wr
+			fuerza_ruedas =  torque / RADIUS_WHEELS # F = trq/r
+
+			with open('Fase3_3_data.csv', 'a', newline='') as csvfile:
+				writer = csv.writer(csvfile)
+				if velocidad_ruedas != 0:
+					error = TARGET_VELOCITY - vy
+				else:
+					error = 0
+
+				writer.writerow([tiempo, y, vy, velocidad_ruedas, fuerza_ruedas, error])
 			
+			if(log_y_next >= 20):
+				break
+			log_y_next += 0.01
 
 except KeyboardInterrupt:
 	pass
