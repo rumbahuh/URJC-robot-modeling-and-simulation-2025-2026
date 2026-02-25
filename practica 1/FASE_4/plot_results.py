@@ -5,8 +5,8 @@ import numpy
 TARGET_VELOCITY = 2.0
 
 # Cargar CSVs
-husky_3_3 = pandas.read_csv("practica 1/FASE_3/3.3_inertial/Fase3_3_data.csv")
-husky_4   = pandas.read_csv("practica 1/FASE_4/Fase4_data.csv")
+husky_3_3 = pandas.read_csv("practica 1/FASE_3/3.3_inertial/Fase3.csv")
+husky_4   = pandas.read_csv("practica 1/FASE_4/Fase4.csv")
 
 posicion_3, velocidad_3 = husky_3_3["y"], husky_3_3["vy"]
 posicion_4, velocidad_4 = husky_4["y"],   husky_4["vy"]
