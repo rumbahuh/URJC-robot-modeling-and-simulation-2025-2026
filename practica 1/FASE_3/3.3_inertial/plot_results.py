@@ -6,7 +6,7 @@ TARGET_VELOCITY = 2.0
 
 husky_3_1 = pandas.read_csv("practica 1/FASE_3/3.1_vel&force/Fase3_1_data.csv")
 husky_3_2 = pandas.read_csv("practica 1/FASE_3/3.2_dynamics/Fase3_2_data.csv")
-husky_3_3 = pandas.read_csv("practica 1/FASE_3/3.3_inertial/Fase3_3_data.csv")
+husky_3_3 = pandas.read_csv("practica 1/FASE_3/3.3_inertial/Fase3.csv")
 
 posicion_1, velocidad_1 = husky_3_1["y"], husky_3_1["vy"]
 posicion_2, velocidad_2 = husky_3_2["y"], husky_3_2["vy"]
@@ -23,4 +23,5 @@ plt.xlabel("Robot position (m)")
 plt.ylabel("Robot Linear Speed (m/s)")
 plt.legend(fontsize=9)
 plt.tight_layout()
+plt.savefig("Fase3.pdf")
 plt.show()

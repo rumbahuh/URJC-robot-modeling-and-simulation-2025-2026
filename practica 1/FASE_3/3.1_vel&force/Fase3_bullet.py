@@ -54,8 +54,8 @@ with open('Fase3_1_data.csv', 'w', newline='') as csvfile:
     writer.writerow(['tiempo', 'y', 'vy', 'velocidad_ruedas', 'fuerza_ruedas', 'error'])
 
 try:
+	p.setRealTimeSimulation(1)
 	while True:
-		p.setRealTimeSimulation(1)
 
 		posicion_robot, orientation_robot = p.getBasePositionAndOrientation(huskyId, physicsClient)
 			
