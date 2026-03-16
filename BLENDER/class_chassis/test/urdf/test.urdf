@@ -14,15 +14,37 @@
     <axis xyz="0.00000 0.00000 1.00000"/>
   </joint>
   <link name="axis_link">
+    <collision name="axis_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00355"/>
+      <geometry>
+        <box size="0.19835 2.51094 0.19658"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="3.14500" ixy="0.00000" ixz="0.00000" iyy="0.04045" iyz="0.00000" izz="3.14545"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="6.00000"/>
+    </inertial>
     <visual name="axis">
       <material name="None"/>
       <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
       <geometry>
-        <box size="0.20000 0.20000 2.50000"/>
+        <box size="0.20222 0.20000 2.50000"/>
       </geometry>
     </visual>
   </link>
   <link name="left_wheel_link">
+    <collision name="left_wheel_collision">
+      <origin rpy="-0.00857 0.00000 0.00000" xyz="0.00000 -0.00000 0.00047"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Torus.dae" scale="0.29646 0.29646 0.29646"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.02982" ixy="0.00000" ixz="0.00000" iyy="0.05768" iyz="-0.00026" izz="0.02983"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00055 -0.05905"/>
+      <mass value="1.00000"/>
+    </inertial>
     <visual name="left_wheel">
       <material name="None"/>
       <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
@@ -32,6 +54,17 @@
     </visual>
   </link>
   <link name="right_wheel_link">
+    <collision name="right_wheel_collision">
+      <origin rpy="0.01024 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Torus.001.dae" scale="0.29646 0.29646 0.29646"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.02982" ixy="0.00000" ixz="0.00000" iyy="0.05768" iyz="-0.00026" izz="0.02983"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00055 0.05905"/>
+      <mass value="1.00000"/>
+    </inertial>
     <visual name="right_wheel">
       <material name="None"/>
       <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
