@@ -1,0 +1,43 @@
+<robot name="test" version="1.0">
+  <joint name="left_wheel_link_joint" type="revolute">
+    <limit lower="-3.14000" upper="3.14000" effort="0.00000" velocity="0.00000"/>
+    <origin rpy="1.56147 0.00000 0.00000" xyz="0.00000 -1.27497 0.00000"/>
+    <parent link="axis_link"/>
+    <child link="left_wheel_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <joint name="right_wheel_link_joint" type="revolute">
+    <limit lower="-3.14000" upper="3.14000" effort="0.00000" velocity="0.00000"/>
+    <origin rpy="1.56147 0.00000 0.00000" xyz="0.00000 1.25266 0.00000"/>
+    <parent link="axis_link"/>
+    <child link="right_wheel_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+  <link name="axis_link">
+    <visual name="axis">
+      <material name="None"/>
+      <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <box size="0.20000 0.20000 2.50000"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_wheel_link">
+    <visual name="left_wheel">
+      <material name="None"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Torus.dae" scale="0.29646 0.29646 0.29646"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_wheel_link">
+    <visual name="right_wheel">
+      <material name="None"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Torus.001.dae" scale="0.29646 0.29646 0.29646"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
