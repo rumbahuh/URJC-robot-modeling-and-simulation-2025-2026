@@ -1,0 +1,3 @@
+Instantiated with filepath=None->None, scale=[0.24618472158908844, 0.24618908762931824, 0.11089198291301727], mesh=<bpy_struct, Mesh("Cylinder.004") at 0x7f702d818520>, meshname=Cylinder.004, material=None, mesh_orientation=None
+->trying export of <bpy_struct, Mesh("Cylinder.004") at 0x7f702d818520> to /home/rumbahuh/Desktop/URJC/RoboticSoftware_Tercero/MODELADO/URJC-robot-modeling-and-simulation-2025-2026/practica2/pybullet/rover/meshes/stl/Cylinder.004.stl
+->wrote stl to /home/rumbahuh/Desktop/URJC/RoboticSoftware_Tercero/MODELADO/URJC-robot-modeling-and-simulation-2025-2026/practica2/pybullet/rover/meshes/stl/Cylinder.004.stl from bpy_types.Mesh
