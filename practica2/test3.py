@@ -8,20 +8,54 @@ PRIS_UP   = 0.6    # arriba
 PRIS_DOWN = -0.7   # bajar hasta 0.7 m aproximadamente
 MAX_FORCE = 100
 
-def move_prismatic(target, speed=0.4, ee_link=10):
+def move_prismatic(target, speed=0.4, ee_link=10, ignore_body=None):
     for _ in range(1000):
-        # Detectar contacto
         contacts = p.getContactPoints(bodyA=robotId, linkIndexA=ee_link)
-        if contacts:
-            print("⚠️ Contacto detectado, deteniendo descenso")
+        
+        # Filtrar contactos: ignorar el cuerpo que queremos transportar
+        real_contacts = []
+        for c in contacts:
+            if ignore_body is not None and c[2] == ignore_body:
+                continue  # skip contact with the cube
+            real_contacts.append(c)
+        
+        if real_contacts:
+            print("⚠️ Contacto detectado, deteniendo")
             break
         
-        # Mover prismático
         p.setJointMotorControl2(
             robotId,
             ee_link,
             p.POSITION_CONTROL,
             targetPosition=target,
+            force=MAX_FORCE,
+            maxVelocity=speed
+        )
+        p.stepSimulation()
+        time.sleep(1./240.)
+
+def pinza(target, speed=0.1, ee_link=[11, 12]):
+    for _ in range(1000):
+        contacts_11 = p.getContactPoints(bodyA=robotId, linkIndexA=11)
+        contacts_12 = p.getContactPoints(bodyA=robotId, linkIndexA=12)
+        
+        if contacts_11 and contacts_12:
+            print("⚠️ Contacto detectado, deteniendo pinza")
+            break
+        
+        p.setJointMotorControl2(
+            robotId,
+            ee_link[0],
+            p.POSITION_CONTROL,
+            targetPosition=target[0],
+            force=MAX_FORCE,
+            maxVelocity=speed
+        )
+        p.setJointMotorControl2(
+            robotId,
+            ee_link[1],
+            p.POSITION_CONTROL,
+            targetPosition=target[1],
             force=MAX_FORCE,
             maxVelocity=speed
         )
@@ -49,25 +83,32 @@ startOrientationCube = p.getQuaternionFromEuler([0, 0, -3.15])
 cubeId = p.loadURDF("/home/rumbahuh/Desktop/URJC/RoboticSoftware_Tercero/MODELADO/URJC-robot-modeling-and-simulation-2025-2026/practica2/pybullet/cubo/urdf/cubo.urdf", startPosCube, startOrientationCube)
 
 """
+print("\n── Joints del robot ──────────────────────────────")
 for i in range(p.getNumJoints(robotId)):
-    print(p.getJointInfo(robotId, i)[0:2]) # Prints (ID, Name)
+    info = p.getJointInfo(robotId, i)
+    print(f"  [{i}] {info[1].decode():40s}  tipo={info[2]}")
+print("─────────────────────────────────────────────────\n")
 
-(0, b'axisB_link_joint')
-(1, b'armBackL_link_joint')
-(2, b'backL_link_joint')
-(3, b'armBackR_link_joint')
-(4, b'backR_link_joint')
-(5, b'base_link_joint')
-(6, b'link1_link_joint')
-(7, b'link2_link_joint')
-(8, b'link3_link_joint')
-(9, b'rot_link4_link_joint')
-(10, b'pris_link4_link_joint')
-(11, b'axisF_link_joint')
-(12, b'armFrontL_link_joint')
-(13, b'frontL_link_joint')
-(14, b'armFrontR_link_joint')
-(15, b'frontR_link_joint')
+── Joints del robot ──────────────────────────────
+  [0] axisB_link_joint                          tipo=4
+  [1] armBackL_link_joint                       tipo=4
+  [2] backL_link_joint                          tipo=0
+  [3] armBackR_link_joint                       tipo=4
+  [4] backR_link_joint                          tipo=0
+  [5] base_link_joint                           tipo=4
+  [6] link1_link_joint                          tipo=4
+  [7] link2_link_joint                          tipo=0
+  [8] link3_link_joint                          tipo=0
+  [9] rot_link4_link_joint                      tipo=0
+  [10] pris_link4_link_joint                     tipo=1
+  [11] pris_link4.001_link_joint                 tipo=1
+  [12] pris_link4.002_link_joint                 tipo=1
+  [13] axisF_link_joint                          tipo=4
+  [14] armFrontL_link_joint                      tipo=4
+  [15] frontL_link_joint                         tipo=0
+  [16] armFrontR_link_joint                      tipo=4
+  [17] frontR_link_joint                         tipo=0
+─────────────────────────────────────────────────
 """
 
 myrover_wheel_joints = [2, 4, 13, 15]
@@ -111,7 +152,11 @@ try:
                 stable_count = 0  # reset if drifting
 
             if stable_count >= stable_threshold:
-                move_prismatic(1.8, speed=0.5)
+                move_prismatic(2, speed=0.5)                        # bajar
+                pinza([0.48, 0.48], speed=0.1)                      # cerrar pinza
+                move_prismatic(0, speed=0.5, ignore_body=cubeId)    # subir ignorando cubo
+                # --- llegar al destino ---
+                pinza([0.0, 0.0], speed=0.1)                        # abrir pinza para soltar
                 prism_moved = True
         
 except KeyboardInterrupt:
