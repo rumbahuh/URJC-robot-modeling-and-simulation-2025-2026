@@ -23,8 +23,8 @@ startPosCube = [0, 4, 0]
 startOrientationCube = p.getQuaternionFromEuler([0, 0, -3.15])
 cubeId = p.loadURDF("../cubo/urdf/cubo.urdf", startPosCube, startOrientationCube)
 
-scara_rot_joints = [7, 8]
-rover_wheel_joints = [2, 4, 15, 17]
+scara_rot_joints = [4, 5]
+rover_wheel_joints = [13, 15, 18, 20]
 
 stable_count = 0
 stable_threshold = 50
@@ -78,10 +78,10 @@ try:
                     targetPositions=FRONT, forces=[50, 50]
                 )
 
-                current_q2 = p.getJointState(robotId, 7)[0]
-                current_q3 = p.getJointState(robotId, 8)[0]
-                vel_q2     = p.getJointState(robotId, 7)[1]
-                vel_q3     = p.getJointState(robotId, 8)[1]
+                current_q2 = p.getJointState(robotId, 4)[0]
+                current_q3 = p.getJointState(robotId, 5)[0]
+                vel_q2     = p.getJointState(robotId, 4)[1]
+                vel_q3     = p.getJointState(robotId, 5)[1]
 
                 at_position = (abs(current_q2 - 1.63) < DELTA and
                                abs(current_q3 - 1.57) < DELTA)

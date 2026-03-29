@@ -3,7 +3,7 @@ import time
 
 MAX_FORCE = 100
 
-def move_prismatic(robotId, target, speed=0.4, ee_link=10, ignore_body=None):
+def move_prismatic(robotId, target, speed=0.4, ee_link=7, ignore_body=None):
     for _ in range(1000):
         contacts = p.getContactPoints(bodyA=robotId, linkIndexA=ee_link)
         
@@ -26,11 +26,11 @@ def move_prismatic(robotId, target, speed=0.4, ee_link=10, ignore_body=None):
         p.stepSimulation()
         time.sleep(1./240.)
 
-def pinza(robotId, target, speed=0.1, ee_link=[11, 12], ignore_contact=False):
+def pinza(robotId, target, speed=0.1, ee_link=[8, 9], ignore_contact=False):
     for _ in range(1000):
         if not ignore_contact:
-            contacts_11 = p.getContactPoints(bodyA=robotId, linkIndexA=11)
-            contacts_12 = p.getContactPoints(bodyA=robotId, linkIndexA=12)
+            contacts_11 = p.getContactPoints(bodyA=robotId, linkIndexA=8)
+            contacts_12 = p.getContactPoints(bodyA=robotId, linkIndexA=9)
             if contacts_11 and contacts_12:
                 print("⚠️ Contacto detectado, deteniendo pinza")
                 break
@@ -48,8 +48,8 @@ def pinza(robotId, target, speed=0.1, ee_link=[11, 12], ignore_contact=False):
 
 def move_arm(robotId, target, speed=0.3, ignore_body=None):
     for _ in range(2000):
-        current_q2 = p.getJointState(robotId, 7)[0]
-        current_q3 = p.getJointState(robotId, 8)[0]
+        current_q2 = p.getJointState(robotId, 4)[0]
+        current_q3 = p.getJointState(robotId, 5)[0]
 
         at_position = (abs(current_q2 - target[0]) < 0.01 and
                        abs(current_q3 - target[1]) < 0.01)
@@ -57,11 +57,11 @@ def move_arm(robotId, target, speed=0.3, ignore_body=None):
             break
 
         p.setJointMotorControl2(
-            robotId, 7, p.POSITION_CONTROL,
+            robotId, 4, p.POSITION_CONTROL,
             targetPosition=target[0], force=50, maxVelocity=speed
         )
         p.setJointMotorControl2(
-            robotId, 8, p.POSITION_CONTROL,
+            robotId, 5, p.POSITION_CONTROL,
             targetPosition=target[1], force=50, maxVelocity=speed
         )
         p.stepSimulation()
