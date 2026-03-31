@@ -1,6 +1,6 @@
 <robot name="rover" version="1.0">
   <joint name="Cube.001_link_joint" type="fixed">
-    <origin rpy="0.00000 0.00000 3.14159" xyz="-0.62849 1.02834 0.42156"/>
+    <origin rpy="0.00000 0.00000 3.14159" xyz="-0.78494 1.00818 0.42156"/>
     <parent link="chassis_link"/>
     <child link="Cube.001_link"/>
   </joint>
@@ -77,7 +77,7 @@
     <axis xyz="0.00000 0.00000 1.00000"/>
   </joint>
   <joint name="Cube_link_joint" type="fixed">
-    <origin rpy="0.00000 0.00000 3.14159" xyz="0.62053 1.02834 0.42156"/>
+    <origin rpy="0.00000 0.00000 3.14159" xyz="0.76908 0.97227 0.42156"/>
     <parent link="chassis_link"/>
     <child link="Cube_link"/>
   </joint>
@@ -132,9 +132,27 @@
   </joint>
   <link name="chassis_link">
     <collision name="chassis_collision">
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00852 0.22069 0.34429"/>
       <geometry>
-        <mesh filename="../meshes/dae/Cube.019.dae" scale="1.00000 1.00000 1.00000"/>
+        <box size="1.95334 2.78490 0.07178"/>
+      </geometry>
+    </collision>
+    <collision name="chassis_collision.000">
+      <origin rpy="0.46218 -0.00000 0.00000" xyz="-0.00415 1.85173 0.44591"/>
+      <geometry>
+        <box size="1.50418 0.53089 0.08997"/>
+      </geometry>
+    </collision>
+    <collision name="chassis_collision.000.001">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00415 -1.40790 0.33199"/>
+      <geometry>
+        <box size="1.46371 0.45353 0.10904"/>
+      </geometry>
+    </collision>
+    <collision name="chassis_collision.000.001.002">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00415 -0.08136 -0.17336"/>
+      <geometry>
+        <box size="1.07593 0.96827 0.25516"/>
       </geometry>
     </collision>
     <inertial>

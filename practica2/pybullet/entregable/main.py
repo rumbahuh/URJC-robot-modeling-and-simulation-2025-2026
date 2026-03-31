@@ -4,11 +4,26 @@ import time
 from sequence import run_sequence
 
 FRONT = [1.63, 1.57]
+LINK_SCARA_1 = 4
+LINK_SCARA_2 = 5
 DELTA = 0.01
 Y = 1
 
+RUN_SPEED = 25
+RUN_TORQUE = 50
+
+RUN_BRAKE_Y_THRESHOLD = 8.0
+RUN_BRAKE_STEPS = 180
 BRAKE_STEPS = 120
-BRAKE_Y_THRESHOLD = 1.3   # start braking when rover reaches Y=3.5
+BRAKE_Y_THRESHOLD = 1.3
+
+stable_count = 0
+stable_threshold = 50
+arm_stable = False
+sequence_done = False
+brake_counter = 0
+
+state = "DRIVE"
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -25,17 +40,6 @@ cubeId = p.loadURDF("../cubo/urdf/cubo.urdf", startPosCube, startOrientationCube
 
 scara_rot_joints = [4, 5]
 rover_wheel_joints = [13, 15, 18, 20]
-
-stable_count = 0
-stable_threshold = 50
-arm_stable = False
-sequence_done = False
-brake_counter = 0
-state = "DRIVE"
-RUN_SPEED = 25
-RUN_TORQUE = 50
-RUN_BRAKE_Y_THRESHOLD = 8.0
-RUN_BRAKE_STEPS = 180
 
 try:
     while True:
@@ -58,7 +62,6 @@ try:
             if posicion_robot[Y] >= BRAKE_Y_THRESHOLD:
                 state = "BRAKE"
                 brake_counter = 0
-                print("Switching to BRAKE")
 
         elif state == "BRAKE":
             p.setJointMotorControlArray(robotId, rover_wheel_joints,
@@ -69,7 +72,6 @@ try:
             brake_counter += 1
             if brake_counter >= BRAKE_STEPS:
                 state = "SCARA_SEQ"
-                print("Switching to SCARA_SEQ")
 
         elif state == "SCARA_SEQ":
             if not arm_stable:
@@ -78,13 +80,13 @@ try:
                     targetPositions=FRONT, forces=[50, 50]
                 )
 
-                current_q2 = p.getJointState(robotId, 4)[0]
-                current_q3 = p.getJointState(robotId, 5)[0]
-                vel_q2     = p.getJointState(robotId, 4)[1]
-                vel_q3     = p.getJointState(robotId, 5)[1]
+                current_q2 = p.getJointState(robotId, LINK_SCARA_1)[0]
+                current_q3 = p.getJointState(robotId, LINK_SCARA_2)[0]
+                vel_q2     = p.getJointState(robotId, LINK_SCARA_1)[1]
+                vel_q3     = p.getJointState(robotId, LINK_SCARA_2)[1]
 
-                at_position = (abs(current_q2 - 1.63) < DELTA and
-                               abs(current_q3 - 1.57) < DELTA)
+                at_position = (abs(current_q2 - FRONT[0]) < DELTA and
+                               abs(current_q3 - FRONT[1]) < DELTA)
                 is_still    = (abs(vel_q2) < DELTA and
                                abs(vel_q3) < DELTA)
 
