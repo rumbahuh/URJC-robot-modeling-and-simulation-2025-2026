@@ -1,6 +1,7 @@
 import pybullet as p
 import pybullet_data
 import time
+import math
 import csv
 
 q2_q3_FRONT      = [1.63, 1.57]
@@ -17,7 +18,7 @@ BRAKE_STEPS      = 120
 RUN_BRAKE_Y      = 8.0
 RUN_BRAKE_STEPS  = 180
 
-NUMERO_JOINTS = 2
+NUMERO_JOINTS = 4
 
 CLOSE_POSE = [0.48, 0.48]
 OPEN_POSE = [0.0, 0.0]
@@ -26,7 +27,13 @@ ARM_TO_CUBE = 2
 ARM_HOME = 0
 CUBE_TO_CHASSIS = 1.4
 
-CUBE_REST_PLACES = [[-0.5, 0.0], [-1, 0.0], [-1.4, 0.0]]
+# Measured in blender by eye and cursor
+HOME = [0, 0, 0]
+
+CUBE = [-2, 3.6, 1.9]
+AUX_CUBE = [-2, 3.6, 0]
+
+CUBE_REST_PLACES = [[1.8, -0.9, 0.32]]
 
 MAX_FORCE    = 100
 
@@ -64,8 +71,37 @@ def stop_rover():
 	if counter >= BRAKE_STEPS:
 		state = "SCARA_SEQ"
 
+def calculate_ik(coor, l1=1, l2=1):
+	"""
+	See citation .ris for more details. Inverse kinematics in Appendix B.
+	"""
+	tx = coor[0]
+	ty = coor[1]
+	tz = coor[2]
+	
+    # Sacamos q2 usando cos(q2)
+	num = tx**2 + ty**2 - l1**2 - l2**2
+	denom = 2 * l1 * l2
+	cos2 = (num / denom)
+	q2 = math.atan2(abs((1 - cos2**2))**(1/2), cos2)
+    
+    # Sacamos q1
+	k1 = l1 + l2*cos2
+	k2 = l2*math.sin(q2)
+	q1 = math.atan2(ty, tx) - math.atan2(k2, k1)
+    
+    # Sacamos q3
+	r21 = 0 # sin(0)
+	r11 = 1 # cos(0)
+	q3 = math.atan2(r21, r11) - q1 - q2
+	
+    # La distancia prismática
+	d4 = tz
+	
+	return [q1, q2, q3, d4]
+
 def move_joint(robotId, joint, target, speed):
-    for _ in range(2000):
+    for _ in range(3000):
         pos, vel = p.getJointState(robotId, joint)[0:2]
         if abs(pos - target) < 0.01 and abs(vel) < 0.05:
             break
@@ -74,29 +110,12 @@ def move_joint(robotId, joint, target, speed):
             targetPosition=target, force=50, maxVelocity=speed)
         p.stepSimulation()
 
-def move_prismatic(robotId, target, speed=0.4, ignore_body=None):
-    while True:
-        pos, vel = p.getJointState(robotId, LINK_PRIS)[0:2]
-        if abs(pos - target) < 0.01 and abs(vel) < 0.05:
-            break
-
-        contacts = p.getContactPoints(bodyA=robotId, linkIndexA=LINK_PRIS)
-        for c in contacts:
-            if c[2] == 0 or c[2] == ignore_body or c[2] == robotId:
-                continue
-            print("Contacto detectado, deteniendo")
-            return
-
-        p.setJointMotorControl2(robotId, LINK_PRIS, p.POSITION_CONTROL,
-            targetPosition=target, force=MAX_FORCE, maxVelocity=speed)
-        p.stepSimulation()
-
 def pinza(robotId, target, speed=0.1, ignore_contact=False):
     for _ in range(1000):
         left  = p.getContactPoints(bodyA=robotId, linkIndexA=PINZA_LEFT)
         right = p.getContactPoints(bodyA=robotId, linkIndexA=PINZA_RIGHT)
         if not ignore_contact and left and right:
-            print("Contacto detectado, deteniendo pinza")
+            #print("Contacto detectado, deteniendo pinza")
             break
 
         p.setJointMotorControl2(robotId, PINZA_LEFT, p.POSITION_CONTROL,
@@ -112,53 +131,58 @@ def move_arm(robotId, target, speed=0.5):
 def twist_pinza(robotId, target, speed=0.3):
     move_joint(robotId, SCARA_ROT_PRIS, target, speed)
 
-def run_sequence(robotId, cubeId, index):
-    move_prismatic(robotId, ARM_TO_CUBE, speed=0.4)
-    pinza(robotId, CLOSE_POSE, speed=0.7)
-    move_prismatic(robotId, ARM_HOME, speed=0.4, ignore_body=cubeId)
-    move_arm(robotId, CUBE_REST_PLACES[index])
-    twist_pinza(robotId, 0.7, speed=0.3) # Usar cin inversa para sacar los grados concretos
-    move_prismatic(robotId, CUBE_TO_CHASSIS, speed=0.4, ignore_body=cubeId)
-    pinza(robotId, OPEN_POSE, speed=0.7, ignore_contact=True)
-    move_prismatic(robotId, ARM_HOME, speed=0.4, ignore_body=cubeId)
-
 def pick_n_place():
-	global state, stable
+	global state
 
-	p.setJointMotorControlArray(robotId, SCARA_ARM_JOINTS,
-                p.POSITION_CONTROL, targetPositions=q2_q3_FRONT, forces=[50, 50])
-
-	q2, v2 = joint(SCARA_ARM_JOINTS[0])
-	q3, v3 = joint(SCARA_ARM_JOINTS[1])
-	on_target = (abs(q2 - q2_q3_FRONT[0]) < 0.01 and
-			     abs(q3 - q2_q3_FRONT[1]) < 0.01 and
-				 abs(v2) < 0.01 and abs(v3) < 0.01)
+	q1, q2, q3, d4 = calculate_ik(CUBE)
+	move_arm(robotId, [q1, q2])
+	time.sleep(0.3)
+	twist_pinza(robotId, q3, speed=0.3)
+	move_joint(robotId, LINK_PRIS, d4, speed=0.4)
+	time.sleep(0.3)
+	pinza(robotId, CLOSE_POSE, speed=0.7)
+	time.sleep(0.3)
 	
-	if on_target:
-		stable = stable + 1
-	else:
-		stable = 0
-
-	if stable >= 50:
-		run_sequence(robotId, cubeId, 0)
-		state = "DONE"
+	q1, q2, q3, d4 = calculate_ik(AUX_CUBE)
+	move_joint(robotId, LINK_PRIS, d4, speed=0.4)
+	time.sleep(0.3)
+	
+	q1, q2, q3, d4 = calculate_ik(CUBE_REST_PLACES[0])
+	move_arm(robotId, [q1, q2])
+	twist_pinza(robotId, q3, speed=0.3)
+	time.sleep(0.3)
+	move_joint(robotId, LINK_PRIS, d4, speed=0.4)
+	pinza(robotId, OPEN_POSE, speed=0.7, ignore_contact=True)
+	time.sleep(0.3)
+	
+	move_joint(robotId, LINK_PRIS, 0, speed=0.4)
+	time.sleep(0.3)
+	
+	q1, q2, q3, d4 = calculate_ik(HOME)
+	move_joint(robotId, LINK_PRIS, d4, speed=0.4)
+	move_arm(robotId, [q1, q2])
+	twist_pinza(robotId, q3, speed=0.3)
+	time.sleep(0.3)
+	
+	state = "DONE"
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 p.setGravity(0, 0, -9.8)
 
 p.loadURDF("plane_transparent.urdf")
-robotId = p.loadURDF("../rover/urdf/rover.urdf", [0,0,1], p.getQuaternionFromEuler([0,0,-3.15]))
-cubeId  = p.loadURDF("../cubo/urdf/cubo.urdf",  [0,4,0], p.getQuaternionFromEuler([0,0,-3.15]))
+robotId = p.loadURDF("../rover/urdf/rover.urdf", [0,0,1], p.getQuaternionFromEuler([0,0,-3.14]))
+cubeId  = p.loadURDF("../cubo/urdf/cubo.urdf",  [0,4,0], p.getQuaternionFromEuler([0,0,-3.14]))
 
-with open('practica2.csv', 'w', newline='') as csvfile:
+with open('Fase3_rebeca_castilla.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Tiempo', 'NumeroJoints', 'G_parcial'])
 
 state   = "DRIVE"
 
 dt = 0.01
-t = time.time()
+t = 0.0
+last_log = time.time()
 try:
 	while True:
 		p.stepSimulation()
@@ -169,16 +193,20 @@ try:
 		elif state == "BRAKE":
 			stop_rover()
 		elif state == "SCARA_SEQ":
+			t += 0.005
 			pick_n_place()
 			
-		t = time.time() - t
-		if (t == dt):
-			F1 = p.getJointState(SCARA_ARM_JOINTS[0])[2]
-			F3 = p.getJointState(SCARA_ROT_PRIS)[2] # we get forces of two joints
-			gParcial = F1 + F3 # add them
-			with open('Fase2_data.csv', 'a', newline='') as csvfile:
+		now = time.time()
+		if (now - last_log >= dt) and state == "SCARA_SEQ":
+			F1 = p.getJointState(robotId, SCARA_ARM_JOINTS[0])[3]
+			F2 = p.getJointState(robotId, SCARA_ARM_JOINTS[1])[3]
+			F3 = p.getJointState(robotId, SCARA_ROT_PRIS)[3]
+			gParcial = F1 + F2 + F3
+			
+			with open('Fase3_rebeca_castilla.csv', 'a', newline='') as csvfile:
 				writer = csv.writer(csvfile)
 				writer.writerow([t, NUMERO_JOINTS, gParcial])
+			last_log = now
 
 except KeyboardInterrupt:
 	pass
