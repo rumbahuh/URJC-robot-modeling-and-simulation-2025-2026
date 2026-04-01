@@ -75,14 +75,18 @@ def move_joint(robotId, joint, target, speed):
         p.stepSimulation()
 
 def move_prismatic(robotId, target, speed=0.4, ignore_body=None):
-    for _ in range(1000):
+    while True:
+        pos, vel = p.getJointState(robotId, LINK_PRIS)[0:2]
+        if abs(pos - target) < 0.01 and abs(vel) < 0.05:
+            break
+
         contacts = p.getContactPoints(bodyA=robotId, linkIndexA=LINK_PRIS)
         for c in contacts:
-            if c[2] == 0 or c[2] == ignore_body:
+            if c[2] == 0 or c[2] == ignore_body or c[2] == robotId:
                 continue
             print("Contacto detectado, deteniendo")
             return
-		
+
         p.setJointMotorControl2(robotId, LINK_PRIS, p.POSITION_CONTROL,
             targetPosition=target, force=MAX_FORCE, maxVelocity=speed)
         p.stepSimulation()
