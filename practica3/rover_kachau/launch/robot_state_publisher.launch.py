@@ -38,7 +38,7 @@ def generate_launch_description():
     )
 
     nodes = [
-        robot_state_publisher_node,  
-    ]
+        robot_state_publisher_node,
+        joint_state_publisher_gui]
 
     return LaunchDescription(nodes)
