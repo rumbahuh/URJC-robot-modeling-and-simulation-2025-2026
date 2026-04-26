@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<robot name="rover" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <joint name="Cube.001_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 3.14159" xyz="-0.78494 1.00818 0.42156"/>
+    <parent link="chassis_link"/>
+    <child link="Cube.001_link"/>
+  </joint>
+
+  <joint name="Cube.002_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 1.57080" xyz="-0.01153 0.38661 0.42391"/>
+    <parent link="chassis_link"/>
+    <child link="Cube.002_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+
+  <joint name="Cube_link_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 3.14159" xyz="0.76908 0.97227 0.42156"/>
+    <parent link="chassis_link"/>
+    <child link="Cube_link"/>
+  </joint>
+
+  <link name="Cube.001_link">
+    <collision name="Cube.001_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <box size="0.04158 0.98771 0.10979"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00008" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="0.00000" izz="0.00008"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="0.00100"/>
+    </inertial>
+    <visual name="Cube.001">
+      <material name="Material.010"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <box size="0.04657 0.98760 0.09602"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="Cube.002_link">
+    <collision name="Cube.002_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <box size="0.05301 0.92029 0.10866"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00000" ixy="0.00000" ixz="0.00000" iyy="0.00007" iyz="0.00000" izz="0.00007"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="0.00100"/>
+    </inertial>
+    <visual name="Cube.002">
+      <material name="Material.011"/>
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <box size="0.04657 0.89445 0.09602"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="Cube_link">
+    <collision name="Cube_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <box size="0.06923 0.98010 0.10221"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00008" ixy="0.00000" ixz="0.00000" iyy="0.00000" iyz="0.00000" izz="0.00008"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="0.00100"/>
+    </inertial>
+    <visual name="Cube">
+      <material name="Material.012"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <box size="0.04657 0.98760 0.09602"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <material name="Material.010">
+    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+  </material>
+  <material name="Material.011">
+    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+  </material>
+  <material name="Material.012">
+    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+  </material>
+
+</robot>
