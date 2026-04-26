@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot name="rover" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="base_link"/>
+  <link name="chassis_link">
+
+    <collision name="chassis_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00852 0.22069 0.34429"/>
+      <geometry>
+        <box size="1.95334 2.78490 0.07178"/>
+      </geometry>
+    </collision>
+
+    <collision name="chassis_collision.000">
+      <origin rpy="0.45745 -0.00000 0.00000" xyz="-0.00415 1.86091 0.44132"/>
+      <geometry>
+        <box size="1.50418 0.49477 0.06170"/>
+      </geometry>
+    </collision>
+
+    <collision name="chassis_collision.000.001">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00415 -1.41774 0.34151"/>
+      <geometry>
+        <box size="1.46371 0.45353 0.08198"/>
+      </geometry>
+    </collision>
+
+    <collision name="chassis_collision.000.001.002">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00415 -0.08136 -0.17336"/>
+      <geometry>
+        <box size="1.07593 0.96827 0.25516"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <inertia ixx="0.00084" ixy="-0.00000" ixz="-0.00000" iyy="0.00030" iyz="0.00007" izz="0.00099"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00312 0.15411 0.17204"/>
+      <mass value="0.00100"/>
+    </inertial>
+
+    <visual name="chassis">
+      <material name="Material.001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Cube.001.dae" scale="1.00000 1.00000 1.00000"/>
+      </geometry>
+    </visual>
+
+  </link>
+
+  <joint name="base_to_chassis" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <material name="Material.001"> 
+    <color rgba="0.00000 0.00392 1.00000 1.00000"/>
+  </material>
+
+</robot>
