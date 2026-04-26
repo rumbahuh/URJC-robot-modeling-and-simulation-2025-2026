@@ -26,3 +26,54 @@ SI HACES COLCON BUILD O SETUP EN SRC RICKY WHEN I CATCH YOU RICKY
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+Pa ti que nos conocemos:
+(base) rumbahuh@stokibot:~/ros2_ws$ conda deactivate
+rumbahuh@stokibot:~/ros2_ws$ which python3
+/usr/bin/python3
+rumbahuh@stokibot:~/ros2_ws$ source /opt/ros/jazzy/setup.bash
+rumbahuh@stokibot:~/ros2_ws$ sudo apt update
+sudo apt install python3-catkin-pkg python3-empy python3-lark
+[sudo] password for rumbahuh: 
+Get:1 file:/var/cuda-repo-ubuntu2404-12-9-local  InRelease [1,572 B]
+Get:2 file:/var/cudnn-local-repo-ubuntu2404-9.9.0  InRelease [1,572 B]
+Get:1 file:/var/cuda-repo-ubuntu2404-12-9-local  InRelease [1,572 B]
+Get:2 file:/var/cudnn-local-repo-ubuntu2404-9.9.0  InRelease [1,572 B]
+Hit:3 http://es.archive.ubuntu.com/ubuntu noble InRelease
+Get:4 http://es.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]                                  
+Get:5 http://es.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]                                
+Hit:6 http://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0 ./ InRelease
+Hit:7 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu noble InRelease               
+Get:8 http://es.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [177 kB]
+Get:9 http://es.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [386 kB]
+Get:10 http://es.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]  
+Get:11 http://es.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7,368 B]    
+Get:12 http://es.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10.5 kB]    
+Get:13 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]                                  
+Hit:14 http://packages.ros.org/ros2/ubuntu noble InRelease           
+Get:15 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21.9 kB]
+Get:16 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [74.2 kB]
+Fetched 1,057 kB in 2s (430 kB/s)           
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+python3-catkin-pkg is already the newest version (1.1.0-101).
+python3-catkin-pkg set to manually installed.
+python3-empy is already the newest version (3.3.4-2).
+python3-empy set to manually installed.
+python3-lark is already the newest version (1.1.9-1).
+python3-lark set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+rumbahuh@stokibot:~/ros2_ws$ rm -rf build install log
+colcon build
+Starting >>> rover_kachau
+Finished <<< rover_kachau [1.26s]                
+
+Summary: 1 package finished [1.43s]
+rumbahuh@stokibot:~/ros2_ws$ source install/setup.bash
+rumbahuh@stokibot:~/ros2_ws$ 
+

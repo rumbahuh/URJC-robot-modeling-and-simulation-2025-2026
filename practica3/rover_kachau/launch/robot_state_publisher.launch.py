@@ -18,7 +18,7 @@ def generate_launch_description():
     robot_description_content = Command([
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare("msr_scara"), "config", description_file]),
+            PathJoinSubstitution([FindPackageShare("rover_kachau"), "robots", description_file]),
     ])
 
     robot_description_param = launch_ros.descriptions.ParameterValue(robot_description_content, value_type=str)
@@ -36,9 +36,15 @@ def generate_launch_description():
           'frame_prefix': prefix,
         }],
     )
+    
+    joint_state_publisher_gui_node = Node(
+        package='joint_state_publisher_gui',
+        executable='joint_state_publisher_gui',
+        output='screen'
+    )
 
     nodes = [
         robot_state_publisher_node,
-        joint_state_publisher_gui]
+        joint_state_publisher_gui_node]
 
     return LaunchDescription(nodes)
