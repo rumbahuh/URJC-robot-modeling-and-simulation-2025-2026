@@ -1,3 +1,0 @@
-Instantiated with filepath=None->None, scale=[0.039218369871377945, 0.039218369871377945, 0.6147660613059998], mesh=<bpy_struct, Mesh("Cylinder.013") at 0x7a8742b18a20>, meshname=Cylinder.013, material=None, mesh_orientation=None
-->trying export of <bpy_struct, Mesh("Cylinder.013") at 0x7a8742b18a20> to /home/rumbahuh/Desktop/URJC/RoboticSoftware_Tercero/MODELADO/URJC-robot-modeling-and-simulation-2025-2026/practica3/better_rover/forsimulation/meshes/dae/Cylinder.013.dae
-->wrote dae to /home/rumbahuh/Desktop/URJC/RoboticSoftware_Tercero/MODELADO/URJC-robot-modeling-and-simulation-2025-2026/practica3/better_rover/forsimulation/meshes/dae/Cylinder.013.dae from bpy_types.Mesh
