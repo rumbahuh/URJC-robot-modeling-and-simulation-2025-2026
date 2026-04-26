@@ -1,4 +1,5 @@
-<robot name="robot">
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 <!-- includes -->
 <xacro:include filename="$(find rover_kachau)/urdf/base/robot_base.urdf.xacro"/>
 <xacro:include filename="$(find rover_kachau)/urdf/wheels/rover_wheel.urdf.xacro"/>
@@ -60,3 +61,4 @@ xacro:sensor_camera node_name="arm_camera" node_namespace="$(arg robot_ns)" fram
  <xacro:arg name="config_controllers" default="$(find gz_ros2_control_demos)/config/diff_drive_controller.yaml"/> 
 -->
 <xacro:arg name="config_controllers" default="$(find rover_kachau)/config/rover_controllers.yaml"/>
+</robot>

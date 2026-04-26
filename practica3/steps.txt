@@ -77,3 +77,5 @@ Summary: 1 package finished [1.43s]
 rumbahuh@stokibot:~/ros2_ws$ source install/setup.bash
 rumbahuh@stokibot:~/ros2_ws$ 
 
+rumbahuh@stokibot:~/ros2_ws$ ros2 launch rover_kachau robot_state_publisher.launch.py
+
