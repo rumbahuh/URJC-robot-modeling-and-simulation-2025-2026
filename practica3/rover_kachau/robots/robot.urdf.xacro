@@ -2,9 +2,13 @@
 <!-- includes -->
 <xacro:include filename="$(find msr_robot)/urdf/base/robot_base.urdf.xacro"/>
 <xacro:include filename="$(find msr_robot)/urdf/wheels/rover_wheel.urdf.xacro"/>
+<xacro:include filename="$(find msr_robot)/urdf/arm/gripper.urdf.xacro"/>
 <xacro:include filename="$(find msr_robot)/urdf/arm/scara.urdf.xacro"/>
 <xacro:include filename="$(find msr_robot)/urdf/sensors/camera.urdf.xacro"/>
 <xacro:include filename="$(find msr_robot)/urdf/sensors/imu_sensor.urdf.xacro"/>
+<xacro:include filename="$(find msr_robot)/urdf/sensors/sensors.urdf.xacro"/>
+<xacro:include filename="$(find msr_robot)/urdf/tank/rover_tank.urdf.xacro"/>
+<xacro:include filename="$(find msr_robot)/urdf/utils/utils.urdf.xacro"/>
 <!-- Propiedades -->
 <xacro:property name="PI" value="3.1415926535897931"/>
 <xacro:property name="wheel_offset_x" value="0.95"/>
