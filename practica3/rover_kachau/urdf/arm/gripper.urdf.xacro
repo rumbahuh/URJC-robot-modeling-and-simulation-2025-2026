@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <joint name="rot_link4_link_joint" type="continuous">
+    <limit effort="0.00000" velocity="0.00000"/>
+    <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.99849 0.00559 -0.52727"/>
+    <parent link="link3_link"/>
+    <child link="rot_link4_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+
+  <joint name="pris_link4_link_joint" type="prismatic">
+    <limit lower="-0.20000" upper="2.30000" effort="0.00000" velocity="0.00000"/>
+    <origin rpy="3.14159 -0.00000 1.57080" xyz="-0.00000 -0.00000 -0.00000"/>
+    <parent link="rot_link4_link"/>
+    <child link="pris_link4_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+
+  <joint name="pris_link4.001_link_joint" type="prismatic">
+    <limit lower="0.00000" upper="0.20000" effort="0.00000" velocity="0.00000"/>
+    <origin rpy="-3.14159 -1.57080 3.14159" xyz="0.34912 0.00059 0.07033"/>
+    <parent link="pris_link4_link"/>
+    <child link="pris_link4.001_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+
+  <joint name="pris_link4.002_link_joint" type="prismatic">
+    <limit lower="0.00000" upper="0.20000" effort="0.00000" velocity="0.00000"/>
+    <origin rpy="-0.00000 1.57080 0.00000" xyz="-0.34568 0.00059 0.07033"/>
+    <parent link="pris_link4_link"/>
+    <child link="pris_link4.002_link"/>
+    <axis xyz="0.00000 0.00000 1.00000"/>
+  </joint>
+
+  <link name="rot_link4_link">
+    <collision name="rot_link4_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="0.00000 -0.00000 0.31437"/>
+      <geometry>
+        <cylinder radius="0.07101" length="0.27439"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00404" ixy="0.00000" ixz="0.00000" iyy="0.00404" iyz="0.00000" izz="0.00126"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.31363"/>
+      <mass value="0.50000"/>
+    </inertial>
+    <visual name="rot_link4">
+      <material name="Material.017"/>
+      <origin rpy="-0.00000 -0.00000 0.00000" xyz="-0.00000 -0.00000 0.31363"/>
+      <geometry>
+        <cylinder radius="0.07102" length="0.28609"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="pris_link4_link">
+    <collision name="pris_link4_collision">
+      <origin rpy="3.14159 0.00000 -3.14159" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00071" ixy="0.00000" ixz="-0.00000" iyy="0.00072" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <mass value="0.00100"/>
+    </inertial>
+    <visual name="pris_link4">
+      <material name="Material.004"/>
+      <origin rpy="3.14159 0.00000 3.14159" xyz="-0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="pris_link4.001_link">
+    <collision name="pris_link4.001_collision">
+      <origin rpy="0.00000 -1.57080 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <box size="0.02510 0.06000 0.09410"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00052" ixy="0.00000" ixz="0.00000" iyy="0.00040" iyz="0.00000" izz="0.00018"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+      <mass value="0.50000"/>
+    </inertial>
+    <visual name="pris_link4.001">
+      <material name="Material.003"/>
+      <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Cylinder.009.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="pris_link4.002_link">
+    <collision name="pris_link4.002_collision">
+      <origin rpy="-3.14159 -1.57080 -3.14159" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <box size="0.02510 0.06000 0.09410"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00052" ixy="-0.00000" ixz="0.00000" iyy="0.00040" iyz="-0.00000" izz="0.00018"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <mass value="0.50000"/>
+    </inertial>
+    <visual name="pris_link4.002">
+      <material name="Material.004"/>
+      <origin rpy="0.00000 1.57080 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/dae/Cylinder.010.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <material name="Material.003">
+    <color rgba="0.00000 0.00392 1.00000 1.00000"/>
+  </material>
+  <material name="Material.004">
+    <color rgba="0.00000 0.00392 1.00000 1.00000"/>
+  </material>
+  <material name="Material.017">
+    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+  </material>
+
+</robot>
