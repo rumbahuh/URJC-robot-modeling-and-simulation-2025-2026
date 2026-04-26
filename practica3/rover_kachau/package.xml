@@ -1,15 +1,18 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(rover_kachau)
+<?xml version="1.0"?>
+<package format="3">
+  <name>rover_kachau</name>
+  <version>0.0.0</version>
+  <description>Rover robot package</description>
 
-find_package(catkin REQUIRED COMPONENTS roslaunch urdf xacro robotnik_sensors)
+  <maintainer email="you@todo.todo">you</maintainer>
+  <license>MIT</license>
 
-catkin_package(
-  CATKIN_DEPENDS urdf xacro
-)
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-include_directories(${catkin_INCLUDE_DIRS})
+  <depend>xacro</depend>
+  <depend>urdf</depend>
 
-install(
-  DIRECTORY config launch meshes robots rviz urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
