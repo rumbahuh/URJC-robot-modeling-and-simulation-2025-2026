@@ -9,10 +9,10 @@
     <axis xyz="0.00000 0.00000 1.00000"/>
   </joint>
 
-  <joint name="base_link_joint" type="fixed">
+  <joint name="scara_base_link_joint" type="fixed">
     <origin rpy="0.00000 0.00000 3.14159" xyz="-0.00310 -0.08948 0.54051"/>
     <parent link="chassis_link"/>
-    <child link="base_link"/>
+    <child link="scara_base_link"/>
   </joint>
 
   <joint name="link1_link_joint" type="fixed">
@@ -46,7 +46,7 @@
     <axis xyz="0.00000 0.00000 1.00000"/>
   </joint>
 
-  <link name="base_link">
+  <link name="scara_base_link">
     <collision name="base_collision">
       <origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
       <geometry>
