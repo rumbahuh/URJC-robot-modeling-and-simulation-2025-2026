@@ -3,26 +3,26 @@
 
   <xacro:macro name="tank" params="prefix parent_link">
 
-    <joint name="{prefix}_Cube.001_link_joint" type="fixed">
+    <joint name="${prefix}_Cube.001_link_joint" type="fixed">
       <origin rpy="0.00000 0.00000 3.14159" xyz="-0.78494 1.00818 0.42156"/>
-      <parent link="{parent_link}"/>
-      <child link="{prefix}_Cube.001_link"/>
+      <parent link="${parent_link}"/>
+      <child link="${prefix}_Cube.001_link"/>
     </joint>
 
-    <joint name="{prefix}_Cube.002_link_joint" type="fixed">
+    <joint name="${prefix}_Cube.002_link_joint" type="fixed">
       <origin rpy="0.00000 0.00000 1.57080" xyz="-0.01153 0.38661 0.42391"/>
-      <parent link="{parent_link}"/>
-      <child link="{prefix}_Cube.002_link"/>
+      <parent link="${parent_link}"/>
+      <child link="${prefix}_Cube.002_link"/>
       <axis xyz="0.00000 0.00000 1.00000"/>
     </joint>
 
-    <joint name="{prefix}_Cube_link_joint" type="fixed">
+    <joint name="${prefix}_Cube_link_joint" type="fixed">
       <origin rpy="0.00000 0.00000 3.14159" xyz="0.76908 0.97227 0.42156"/>
-      <parent link="{parent_link}"/>
-      <child link="{prefix}_Cube_link"/>
+      <parent link="${parent_link}"/>
+      <child link="${prefix}_Cube_link"/>
     </joint>
 
-    <link name="{prefix}_Cube.001_link">
+    <link name="${prefix}_Cube.001_link">
       <collision name="Cube.001_collision">
         <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
         <geometry>
@@ -43,7 +43,7 @@
       </visual>
     </link>
 
-    <link name="{prefix}_Cube.002_link">
+    <link name="${prefix}_Cube.002_link">
       <collision name="Cube.002_collision">
         <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
         <geometry>
@@ -64,7 +64,7 @@
       </visual>
     </link>
 
-    <link name="{prefix}_Cube_link">
+    <link name="${prefix}_Cube_link">
       <collision name="Cube_collision">
         <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
         <geometry>
