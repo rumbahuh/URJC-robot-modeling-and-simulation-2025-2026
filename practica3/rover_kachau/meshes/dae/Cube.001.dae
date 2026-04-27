@@ -5,13 +5,13 @@
       <author>Blender User</author>
       <authoring_tool>Blender 4.2.18 LTS commit date:2026-02-16, commit time:13:37, hash:d71e3422e438</authoring_tool>
     </contributor>
-    <created>2026-04-03T11:16:37</created>
-    <modified>2026-04-03T11:16:37</modified>
+    <created>2026-04-27T13:02:14</created>
+    <modified>2026-04-27T13:02:14</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
-    <effect id="Material_001-effect">
+    <effect id="Material_022-effect">
       <profile_COMMON>
         <technique sid="common">
           <lambert>
@@ -19,7 +19,7 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <color sid="diffuse">0 0.003999949 1 1</color>
+              <color sid="diffuse">0 0.01161246 0.1144361 1</color>
             </diffuse>
             <reflectivity>
               <float sid="specular">0.823</float>
@@ -31,11 +31,31 @@
         </technique>
       </profile_COMMON>
     </effect>
+    <effect id="Material_023-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.2232241 0.1384343 0.01849993 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
   </library_effects>
   <library_images/>
   <library_materials>
-    <material id="Material_001-material" name="Material.001">
-      <instance_effect url="#Material_001-effect"/>
+    <material id="Material_022-material" name="Material.022">
+      <instance_effect url="#Material_022-effect"/>
+    </material>
+    <material id="Material_023-material" name="Material.023">
+      <instance_effect url="#Material_023-effect"/>
     </material>
   </library_materials>
   <library_geometries>
@@ -73,7 +93,7 @@
         <vertices id="Cube_001-mesh-vertices">
           <input semantic="POSITION" source="#Cube_001-mesh-positions"/>
         </vertices>
-        <triangles material="Material_001-material" count="1748">
+        <triangles material="Material_022-material" count="1748">
           <input semantic="VERTEX" source="#Cube_001-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Cube_001-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Cube_001-mesh-map-0" offset="2" set="0"/>
@@ -89,7 +109,10 @@
         <instance_geometry url="#Cube_001-mesh" name="tmp_export_Cube.001">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Material_001-material" target="#Material_001-material">
+              <instance_material symbol="Material_022-material" target="#Material_022-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="Material_023-material" target="#Material_023-material">
                 <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>

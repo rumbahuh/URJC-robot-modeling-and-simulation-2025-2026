@@ -142,7 +142,7 @@
       <collision name="frontL_collision">
         <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 -0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.002.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.002.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </collision>
       <inertial>
@@ -154,7 +154,7 @@
         <material name="Material.020"/>
         <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.007.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.007.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </visual>
     </link>
@@ -184,7 +184,7 @@
       <collision name="frontR_collision">
         <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 -0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.004.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.004.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </collision>
       <inertial>
@@ -196,7 +196,7 @@
         <material name="Material.021"/>
         <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.008.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.008.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </visual>
     </link>
@@ -226,7 +226,7 @@
       <collision name="backL_collision">
         <origin rpy="0.01967 0.01541 -0.18756" xyz="-0.00000 0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.001.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.001.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </collision>
       <inertial>
@@ -238,7 +238,7 @@
         <material name="Material.018"/>
         <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.005.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.005.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </visual>
     </link>
@@ -268,7 +268,7 @@
       <collision name="backR_collision">
         <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.003.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.003.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </collision>
       <inertial>
@@ -280,7 +280,7 @@
         <material name="Material.019"/>
         <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
         <geometry>
-          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.006.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.006.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </visual>
     </link>

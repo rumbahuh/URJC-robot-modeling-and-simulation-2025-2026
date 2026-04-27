@@ -22,9 +22,11 @@
 <!-- Base -->
 <xacro:robot_base prefix="$(arg prefix)"/>
 <!-- Wheels -->
-<xacro:rover_wheel prefix="rover" parent_link="base_link"/>
+<xacro:rover_wheel prefix="wheels_" parent_link="base_link"/>
+<!-- Tank -->
+<xacro:tank prefix="tank_" parent_link="base_link"/>
 <!-- Arm -->
-<xacro:scara prefix="scara" parent_link="base_link"/>
+<xacro:scara prefix="" parent_link="base_link"/>
 <!--
 <xacro:include filename="$(find rover_kachau)/urdf/ros2_control.urdf.xacro"/>
 <xacro:arg name="config_controllers" default="$(find rover_kachau)/config/rover_controllers.yaml"/>
