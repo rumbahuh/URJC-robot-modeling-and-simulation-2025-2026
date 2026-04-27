@@ -1,316 +1,289 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
-  <joint name="frontL_link_joint" type="continuous">
-    <limit effort="0.00000" velocity="0.00000"/>
-    <origin rpy="1.56418 -0.93639 3.12224" xyz="-0.02187 -0.29773 -0.28847"/>
-    <parent link="armFrontL_link"/>
-    <child link="frontL_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
   
-  <joint name="armFrontR_link_joint" type="fixed">
-    <origin rpy="-0.00000 0.82216 1.57080" xyz="-0.40242 -0.20743 -0.20148"/>
-    <parent link="axisF_link"/>
-    <child link="armFrontR_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="frontR_link_joint" type="continuous">
-    <limit effort="0.00000" velocity="0.00000"/>
-    <origin rpy="1.56418 -0.93639 3.12224" xyz="-0.02187 0.29825 -0.28847"/>
-    <parent link="armFrontR_link"/>
-    <child link="frontR_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
+  <xacro:macro name="rover_wheel" params="prefix parent_link">
 
-  <joint name="axisB_link_joint" type="fixed">
-    <origin rpy="0.00000 0.00000 3.14159" xyz="-0.00054 -0.50271 -0.36400"/>
-    <parent link="chassis_link"/>
-    <child link="axisB_link"/>
-  </joint>
+    <joint name="${prefix}_axisF_link_joint" type="fixed">
+      <origin rpy="0.00000 0.00000 3.14159" xyz="-0.00054 0.32397 -0.36400"/>
+      <parent link="${parent_link}"/>
+      <child link="${prefix}_axisF_link"/>
+    </joint>
 
-  <joint name="armBackL_link_joint" type="fixed">
-    <origin rpy="0.00000 -0.82216 1.57080" xyz="0.41000 0.20743 -0.20148"/>
-    <parent link="axisB_link"/>
-    <child link="armBackL_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
+    <joint name="${prefix}_axisB_link_joint" type="fixed">
+      <origin rpy="0.00000 0.00000 3.14159" xyz="-0.00054 -0.50271 -0.36400"/>
+      <parent link="${parent_link}"/>
+      <child link="${prefix}_axisB_link"/>
+    </joint>
 
-  <joint name="backL_link_joint" type="continuous">
-    <limit effort="0.00000" velocity="0.00000"/>
-    <origin rpy="-1.60020 -0.56075 0.01354" xyz="0.02187 -0.29773 -0.28847"/>
-    <parent link="armBackL_link"/>
-    <child link="backL_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
+    <joint name="${prefix}_armFrontL_link_joint" type="fixed">
+      <origin rpy="0.00000 0.82216 1.57080" xyz="0.41000 -0.20743 -0.20148"/>
+      <parent link="${prefix}_axisF_link"/>
+      <child link="${prefix}_armFrontL_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <joint name="armBackR_link_joint" type="fixed">
-    <origin rpy="0.00000 -0.82216 1.57080" xyz="-0.40243 0.20743 -0.20148"/>
-    <parent link="axisB_link"/>
-    <child link="armBackR_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
+    <joint name="${prefix}_frontL_link_joint" type="continuous">
+      <limit effort="0.00000" velocity="0.00000"/>
+      <origin rpy="1.56418 -0.93639 3.12224" xyz="-0.02187 -0.29773 -0.28847"/>
+      <parent link="${prefix}_armFrontL_link"/>
+      <child link="${prefix}_frontL_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <joint name="backR_link_joint" type="continuous">
-    <limit effort="0.00000" velocity="0.00000"/>
-    <origin rpy="-1.60020 -0.56075 0.01354" xyz="0.02187 0.29825 -0.28847"/>
-    <parent link="armBackR_link"/>
-    <child link="backR_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
+    <joint name="${prefix}_armFrontR_link_joint" type="fixed">
+      <origin rpy="-0.00000 0.82216 1.57080" xyz="-0.40242 -0.20743 -0.20148"/>
+      <parent link="${prefix}_axisF_link"/>
+      <child link="${prefix}_armFrontR_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <joint name="axisF_link_joint" type="fixed">
-    <origin rpy="0.00000 0.00000 3.14159" xyz="-0.00054 0.32397 -0.36400"/>
-    <parent link="chassis_link"/>
-    <child link="axisF_link"/>
-  </joint>
+    <joint name="${prefix}_frontR_link_joint" type="continuous">
+      <limit effort="0.00000" velocity="0.00000"/>
+      <origin rpy="1.56418 -0.93639 3.12224" xyz="-0.02187 0.29825 -0.28847"/>
+      <parent link="${prefix}_armFrontR_link"/>
+      <child link="${prefix}_frontR_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <joint name="armFrontL_link_joint" type="fixed">
-    <origin rpy="0.00000 0.82216 1.57080" xyz="0.41000 -0.20743 -0.20148"/>
-    <parent link="axisF_link"/>
-    <child link="armFrontL_link"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
+    <joint name="${prefix}_armBackL_link_joint" type="fixed">
+      <origin rpy="0.00000 -0.82216 1.57080" xyz="0.41000 0.20743 -0.20148"/>
+      <parent link="${prefix}_axisB_link"/>
+      <child link="${prefix}_armBackL_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <link name="armFrontL_link">
-    <collision name="armFrontL_collision">
-      <origin rpy="-0.00001 1.56569 -0.00001" xyz="-0.00257 -0.00198 0.00239"/>
-      <geometry>
-        <box size="0.50298 0.08415 0.06858"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.04846" ixy="0.00000" ixz="0.00000" iyy="0.02390" iyz="-0.02296" izz="0.02681"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
-      <mass value="2.00000"/>
-    </inertial>
-    <visual name="armFrontL">
-      <material name="Material.006"/>
-      <origin rpy="3.14159 -1.56569 -3.14159" xyz="0.00000 0.00000 -0.00000"/>
-      <geometry>
-        <box size="0.53237 0.08219 0.08564"/>
-      </geometry>
-    </visual>
-  </link>
+    <joint name="${prefix}_backL_link_joint" type="continuous">
+      <limit effort="0.00000" velocity="0.00000"/>
+      <origin rpy="-1.60020 -0.56075 0.01354" xyz="0.02187 -0.29773 -0.28847"/>
+      <parent link="${prefix}_armBackL_link"/>
+      <child link="${prefix}_backL_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <link name="frontL_link">
-    <collision name="frontL_collision">
-      <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 -0.00000 -0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.002.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.56590" ixy="-0.00412" ixz="0.00325" iyy="0.35843" iyz="-0.00006" izz="0.35977"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00054 -0.00061 0.03131"/>
-      <mass value="10.00000"/>
-    </inertial>
-    <visual name="frontL">
-      <material name="Material.020"/>
-      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.007.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
+    <joint name="${prefix}_armBackR_link_joint" type="fixed">
+      <origin rpy="0.00000 -0.82216 1.57080" xyz="-0.40243 0.20743 -0.20148"/>
+      <parent link="${prefix}_axisB_link"/>
+      <child link="${prefix}_armBackR_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <link name="armFrontR_link">
-    <collision name="armFrontR_collision">
-      <origin rpy="-3.14157 -1.56569 3.14157" xyz="0.00000 0.00580 0.00000"/>
-      <geometry>
-        <box size="0.52966 0.08095 0.08510"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.04846" ixy="0.00000" ixz="0.00000" iyy="0.02390" iyz="-0.02296" izz="0.02681"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
-      <mass value="2.00000"/>
-    </inertial>
-    <visual name="armFrontR">
-      <material name="Material.007"/>
-      <origin rpy="-3.14157 -1.56569 3.14157" xyz="0.00000 -0.00000 0.00000"/>
-      <geometry>
-        <box size="0.53237 0.08219 0.08564"/>
-      </geometry>
-    </visual>
-  </link>
+    <joint name="${prefix}_backR_link_joint" type="continuous">
+      <limit effort="0.00000" velocity="0.00000"/>
+      <origin rpy="-1.60020 -0.56075 0.01354" xyz="0.02187 0.29825 -0.28847"/>
+      <parent link="${prefix}_armBackR_link"/>
+      <child link="${prefix}_backR_link"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
 
-  <link name="frontR_link">
-    <collision name="frontR_collision">
-      <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 -0.00000 -0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.004.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.56589" ixy="-0.00414" ixz="0.00322" iyy="0.35844" iyz="-0.00006" izz="0.35978"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00018 0.00078 -0.03141"/>
-      <mass value="10.00000"/>
-    </inertial>
-    <visual name="frontR">
-      <material name="Material.021"/>
-      <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.008.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
+    <link name="${prefix}_axisF_link">
+      <collision name="axisF_collision">
+        <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+        <geometry>
+          <box size="0.85750 0.08751 0.07235"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.00215" ixy="0.00000" ixz="0.00000" iyy="0.12342" iyz="0.00000" izz="0.12383"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+        <mass value="2.00000"/>
+      </inertial>
+      <visual name="axisF">
+        <material name="Material.009"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+        <geometry>
+          <box size="0.88702 0.08219 0.08564"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <link name="axisB_link">
-    <collision name="axisB_collision">
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00231 0.00000 0.00000"/>
-      <geometry>
-        <box size="0.90922 0.09218 0.07716"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.00241" ixy="0.00000" ixz="0.00000" iyy="0.13877" iyz="0.00000" izz="0.13920"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00231 0.00000 0.00000"/>
-      <mass value="2.00000"/>
-    </inertial>
-    <visual name="axisB">
-      <material name="Material.008"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
-      <geometry>
-        <box size="0.88702 0.08219 0.08564"/>
-      </geometry>
-    </visual>
-  </link>
+    <link name="${prefix}_axisB_link">
+      <collision name="axisB_collision">
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00231 0.00000 0.00000"/>
+        <geometry>
+          <box size="0.90922 0.09218 0.07716"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.00241" ixy="0.00000" ixz="0.00000" iyy="0.13877" iyz="0.00000" izz="0.13920"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00231 0.00000 0.00000"/>
+        <mass value="2.00000"/>
+      </inertial>
+      <visual name="axisB">
+        <material name="Material.008"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+        <geometry>
+          <box size="0.88702 0.08219 0.08564"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <link name="armBackL_link">
-    <collision name="armBackL_collision">
-      <origin rpy="-0.00001 -1.56569 0.00001" xyz="0.00479 -0.00207 0.00445"/>
-      <geometry>
-        <box size="0.53576 0.07240 0.07520"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.04846" ixy="0.00000" ixz="-0.00000" iyy="0.02390" iyz="0.02296" izz="0.02681"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
-      <mass value="2.00000"/>
-    </inertial>
-    <visual name="armBackL">
-      <material name="Material.002"/>
-      <origin rpy="-3.14159 1.56569 -3.14159" xyz="-0.00000 0.00000 -0.00000"/>
-      <geometry>
-        <box size="0.53237 0.08219 0.08564"/>
-      </geometry>
-    </visual>
-  </link>
+    <link name="${prefix}_armFrontL_link">
+      <collision name="armFrontL_collision">
+        <origin rpy="-0.00001 1.56569 -0.00001" xyz="-0.00257 -0.00198 0.00239"/>
+        <geometry>
+          <box size="0.50298 0.08415 0.06858"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.04846" ixy="0.00000" ixz="0.00000" iyy="0.02390" iyz="-0.02296" izz="0.02681"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+        <mass value="2.00000"/>
+      </inertial>
+      <visual name="armFrontL">
+        <material name="Material.006"/>
+        <origin rpy="3.14159 -1.56569 -3.14159" xyz="0.00000 0.00000 -0.00000"/>
+        <geometry>
+          <box size="0.53237 0.08219 0.08564"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <link name="backL_link">
-    <collision name="backL_collision">
-      <origin rpy="0.01967 0.01541 -0.18756" xyz="-0.00000 0.00000 -0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.001.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.56590" ixy="-0.00415" ixz="0.00325" iyy="0.35843" iyz="-0.00006" izz="0.35977"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00050 -0.00084 0.03131"/>
-      <mass value="10.00000"/>
-    </inertial>
-    <visual name="backL">
-      <material name="Material.018"/>
-      <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.005.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
+    <link name="${prefix}_frontL_link">
+      <collision name="frontL_collision">
+        <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 -0.00000 -0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.002.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.56590" ixy="-0.00412" ixz="0.00325" iyy="0.35843" iyz="-0.00006" izz="0.35977"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="0.00054 -0.00061 0.03131"/>
+        <mass value="10.00000"/>
+      </inertial>
+      <visual name="frontL">
+        <material name="Material.020"/>
+        <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.007.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <link name="armBackR_link">
-    <collision name="armBackR_collision">
-      <origin rpy="-3.14156 1.56569 -3.14156" xyz="-0.00000 0.00000 0.00000"/>
-      <geometry>
-        <box size="0.56133 0.08674 0.08389"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.04846" ixy="0.00000" ixz="-0.00000" iyy="0.02390" iyz="0.02296" izz="0.02681"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
-      <mass value="2.00000"/>
-    </inertial>
-    <visual name="armBackR">
-      <material name="Material.005"/>
-      <origin rpy="-3.14157 1.56569 -3.14157" xyz="-0.00000 0.00000 -0.00000"/>
-      <geometry>
-        <box size="0.53238 0.08219 0.08564"/>
-      </geometry>
-    </visual>
-  </link>
+    <link name="${prefix}_armFrontR_link">
+      <collision name="armFrontR_collision">
+        <origin rpy="-3.14157 -1.56569 3.14157" xyz="0.00000 0.00580 0.00000"/>
+        <geometry>
+          <box size="0.52966 0.08095 0.08510"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.04846" ixy="0.00000" ixz="0.00000" iyy="0.02390" iyz="-0.02296" izz="0.02681"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+        <mass value="2.00000"/>
+      </inertial>
+      <visual name="armFrontR">
+        <material name="Material.007"/>
+        <origin rpy="-3.14157 -1.56569 3.14157" xyz="0.00000 -0.00000 0.00000"/>
+        <geometry>
+          <box size="0.53237 0.08219 0.08564"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <link name="backR_link">
-    <collision name="backR_collision">
-      <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 0.00000 -0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.003.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.56589" ixy="-0.00412" ixz="0.00322" iyy="0.35844" iyz="-0.00006" izz="0.35978"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00022 0.00055 -0.03141"/>
-      <mass value="10.00000"/>
-    </inertial>
-    <visual name="backR">
-      <material name="Material.019"/>
-      <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
-      <geometry>
-        <mesh filename="../meshes/dae/Cylinder.006.dae" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
+    <link name="${prefix}_frontR_link">
+      <collision name="frontR_collision">
+        <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 -0.00000 -0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.004.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.56589" ixy="-0.00414" ixz="0.00322" iyy="0.35844" iyz="-0.00006" izz="0.35978"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00018 0.00078 -0.03141"/>
+        <mass value="10.00000"/>
+      </inertial>
+      <visual name="frontR">
+        <material name="Material.021"/>
+        <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.008.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <link name="axisF_link">
-    <collision name="axisF_collision">
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
-      <geometry>
-        <box size="0.85750 0.08751 0.07235"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.00215" ixy="0.00000" ixz="0.00000" iyy="0.12342" iyz="0.00000" izz="0.12383"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
-      <mass value="2.00000"/>
-    </inertial>
-    <visual name="axisF">
-      <material name="Material.009"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
-      <geometry>
-        <box size="0.88702 0.08219 0.08564"/>
-      </geometry>
-    </visual>
-  </link>
+    <link name="${prefix}_armBackL_link">
+      <collision name="armBackL_collision">
+        <origin rpy="-0.00001 -1.56569 0.00001" xyz="0.00479 -0.00207 0.00445"/>
+        <geometry>
+          <box size="0.53576 0.07240 0.07520"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.04846" ixy="0.00000" ixz="-0.00000" iyy="0.02390" iyz="0.02296" izz="0.02681"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+        <mass value="2.00000"/>
+      </inertial>
+      <visual name="armBackL">
+        <material name="Material.002"/>
+        <origin rpy="-3.14159 1.56569 -3.14159" xyz="-0.00000 0.00000 -0.00000"/>
+        <geometry>
+          <box size="0.53237 0.08219 0.08564"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <material name="Material.002">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
+    <link name="${prefix}_backL_link">
+      <collision name="backL_collision">
+        <origin rpy="0.01967 0.01541 -0.18756" xyz="-0.00000 0.00000 -0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.001.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.56590" ixy="-0.00415" ixz="0.00325" iyy="0.35843" iyz="-0.00006" izz="0.35977"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="0.00050 -0.00084 0.03131"/>
+        <mass value="10.00000"/>
+      </inertial>
+      <visual name="backL">
+        <material name="Material.018"/>
+        <origin rpy="-0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 -0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.005.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </visual>
+    </link>
 
-  <material name="Material.005">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.006">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.007">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.008">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.009">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.018">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.019">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.020">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
-  <material name="Material.021">
-    <color rgba="0.00000 0.00000 0.00000 1.00000"/>
-  </material>
+    <link name="${prefix}_armBackR_link">
+      <collision name="armBackR_collision">
+        <origin rpy="-3.14156 1.56569 -3.14156" xyz="-0.00000 0.00000 0.00000"/>
+        <geometry>
+          <box size="0.56133 0.08674 0.08389"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.04846" ixy="0.00000" ixz="-0.00000" iyy="0.02390" iyz="0.02296" izz="0.02681"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 0.00000 0.00000"/>
+        <mass value="2.00000"/>
+      </inertial>
+      <visual name="armBackR">
+        <material name="Material.005"/>
+        <origin rpy="-3.14157 1.56569 -3.14157" xyz="-0.00000 0.00000 -0.00000"/>
+        <geometry>
+          <box size="0.53238 0.08219 0.08564"/>
+        </geometry>
+      </visual>
+
+    </link>
+    <link name="${prefix}_backR_link">
+      <collision name="backR_collision">
+        <origin rpy="0.01967 0.01541 -0.18756" xyz="0.00000 0.00000 -0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.003.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <inertia ixx="0.56589" ixy="-0.00412" ixz="0.00322" iyy="0.35844" iyz="-0.00006" izz="0.35978"/>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00022 0.00055 -0.03141"/>
+        <mass value="10.00000"/>
+      </inertial>
+      <visual name="backR">
+        <material name="Material.019"/>
+        <origin rpy="-0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+        <geometry>
+          <mesh filename="../meshes/dae/Cylinder.006.dae" scale="1.00000 1.00000 1.00000"/>
+        </geometry>
+      </visual>
+    </link>
+
+  </xacro:macro>
 </robot>

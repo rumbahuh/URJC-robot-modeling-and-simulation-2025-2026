@@ -1,23 +1,19 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  
-  <xacro:macro name="camera_sensor" params="frame_prefix horizontal_fov video_width video_height">
-  
+  <xacro:macro name="camera_sensor" params="frame_prefix parent_link horizontal_fov video_width video_height">
     <link name="${frame_prefix}_camera_link"/>
-
     <joint name="${frame_prefix}_camera_joint" type="fixed">
       <parent link="${parent_link}"/>
       <child link="${frame_prefix}_camera_link"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
-
-    <gazebo reference="${frame_prefix}_camera_frame">
+    <gazebo reference="${frame_prefix}_camera_link">
       <sensor name="${frame_prefix}_sensor" type="camera">
         <visualize>true</visualize>
         <update_rate>30</update_rate>
         <topic>/${frame_prefix}/image</topic>
         <camera>
-          <horizontal_fov>${radians(float(horizontal_fov))}</horizontal_fov>
+          <horizontal_fov>${horizontal_fov}</horizontal_fov>
           <image>
             <width>${video_width}</width>
             <height>${video_height}</height>
@@ -32,11 +28,9 @@
             <mean>0.0</mean>
             <stddev>0.007</stddev>
           </noise>
-          <optical_frame_id>${frame_prefix}_camera_frame</optical_frame_id>
+          <optical_frame_id>${frame_prefix}_camera_link</optical_frame_id>
         </camera>
       </sensor>
     </gazebo>
-
   </xacro:macro>
-
 </robot>
