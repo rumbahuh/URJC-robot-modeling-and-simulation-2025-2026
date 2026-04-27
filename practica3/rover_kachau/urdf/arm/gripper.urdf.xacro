@@ -6,7 +6,7 @@
     <joint name="${prefix}_gripper_mount_joint" type="fixed">
       <parent link="${parent_link}"/>
       <child link="${prefix}_pris_link4_link"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="3.14159 0 0"/>
     </joint>
 
     <joint name="${prefix}_pris_link4_link_joint" type="prismatic">

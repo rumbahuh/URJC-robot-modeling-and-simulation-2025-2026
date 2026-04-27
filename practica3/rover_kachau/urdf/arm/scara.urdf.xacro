@@ -5,7 +5,7 @@
     <joint name="${prefix}_scara_mount_joint" type="fixed">
       <parent link="${parent_link}"/>
       <child link="${prefix}_scara_base_link"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="${arm_offset_x} 0 0.55" rpy="0 0 0"/>
     </joint>
 
     <joint name="${prefix}_link1_link_joint" type="fixed">
