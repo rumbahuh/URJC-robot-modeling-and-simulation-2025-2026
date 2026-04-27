@@ -22,10 +22,7 @@
 <!-- Base -->
 <xacro:robot_base prefix="$(arg prefix)"/>
 <!-- Wheels -->
-<xacro:rover_wheel prefix="front_right_" parent_link="base_link"/>
-<xacro:rover_wheel prefix="back_right_" parent_link="base_link"/>
-<xacro:rover_wheel prefix="front_left_" parent_link="base_link"/>
-<xacro:rover_wheel prefix="back_left_" parent_link="base_link"/>
+<xacro:rover_wheel prefix="rover" parent_link="base_link"/>
 <!-- Arm -->
 <xacro:scara prefix="scara" parent_link="base_link"/>
 <!--

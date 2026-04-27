@@ -37,7 +37,7 @@
       <collision name="pris_link4_collision">
         <origin rpy="3.14159 0.00000 -3.14159" xyz="-0.00000 0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="../meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
+          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
         </geometry>
       </collision>
       <inertial>
@@ -49,7 +49,7 @@
         <material name="Material.004"/>
         <origin rpy="3.14159 0.00000 3.14159" xyz="-0.00000 0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="../meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
+          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
         </geometry>
       </visual>
     </link>
@@ -70,7 +70,7 @@
         <material name="Material.003"/>
         <origin rpy="-0.00000 -1.57080 0.00000" xyz="-0.00000 -0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="../meshes/dae/Cylinder.009.dae" scale="0.03922 0.03922 0.61477"/>
+          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.009.dae" scale="0.03922 0.03922 0.61477"/>
         </geometry>
       </visual>
     </link>
@@ -91,7 +91,7 @@
         <material name="Material.004"/>
         <origin rpy="0.00000 1.57080 0.00000" xyz="0.00000 0.00000 -0.00000"/>
         <geometry>
-          <mesh filename="../meshes/dae/Cylinder.010.dae" scale="0.03922 0.03922 0.61477"/>
+          <mesh filename="$(find rover_kachau)/meshes/dae/Cylinder.010.dae" scale="0.03922 0.03922 0.61477"/>
         </geometry>
       </visual>
     </link>

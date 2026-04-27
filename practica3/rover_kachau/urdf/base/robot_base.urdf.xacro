@@ -47,7 +47,7 @@
         <material name="Material.001"/>
         <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
         <geometry>
-          <mesh filename="../meshes/dae/Cube.001.dae" scale="1.00000 1.00000 1.00000"/>
+          <mesh filename="$(find rover_kachau)/meshes/dae/Cube.001.dae" scale="1.00000 1.00000 1.00000"/>
         </geometry>
       </visual>
     </link>
