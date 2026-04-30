@@ -28,8 +28,8 @@
 <!-- Arm -->
 <xacro:scara prefix="" parent_link="base_link"/>
 <xacro:gripper prefix="" parent_link="_rot_link4_link"/>
-<!--
+
 <xacro:include filename="$(find rover_kachau)/urdf/ros2_control.urdf.xacro"/>
 <xacro:arg name="config_controllers" default="$(find rover_kachau)/config/rover_controllers.yaml"/>
--->
+
 </robot>

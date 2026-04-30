@@ -5,16 +5,25 @@
   <xacro:include filename="$(find rover_kachau)/urdf/sensors/gpu_lidar.urdf.xacro"/>
   <xacro:include filename="$(find rover_kachau)/urdf/sensors/gps.urdf.xacro"/>
 
-  <xacro:imu_sensor prefix="imu" topic="/imu/data" parent_link="base_link"/>
+  <xacro:sensor_imu prefix="imu" parent="base_link">
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+  </xacro:sensor_imu>
 
   <xacro:camera_sensor
     frame_prefix="front_cam"
     parent_link="base_link"
     horizontal_fov="1.57"
     video_width="640"
-    video_height="480"/>
+    video_height="480">
+    <origin xyz="0.5 0 0.3" rpy="0 0 0"/>
+  </xacro:camera_sensor>
 
-  <xacro:lidar_sensor frame_prefix="lidar" parent_link="base_link" topic="/lidar/scan"/>
+  <xacro:sensor_3d_lidar frame_prefix="lidar" parent="base_link">
+    <origin xyz="0 0 0.3" rpy="0 0 0"/>
+  </xacro:sensor_3d_lidar>
 
-  <xacro:gps_sensor frame_prefix="gps" update_rate="10" parent_link="base_link"/>
+  <xacro:sensor_gps frame_prefix="gps" parent="base_link">
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+  </xacro:sensor_gps>
+
 </robot>
