@@ -1,4 +1,0 @@
-rover_kachau:
-  ros__parameters:
-    forward_metters: 1.0
-    turn_rads: 1.57
