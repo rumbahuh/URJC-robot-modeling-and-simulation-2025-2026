@@ -21,4 +21,16 @@
   <material name="Material.019"><color rgba="0 0 0 1"/></material>
   <material name="Material.020"><color rgba="0 0 0 1"/></material>
   <material name="Material.021"><color rgba="0 0 0 1"/></material>
+
+  <xacro:macro name="solid_cuboid_inertia" params="m w h d">
+    <inertia ixx="${(m/12.0) * (h*h + d*d)}" ixy="0" ixz="0"
+             iyy="${(m/12.0) * (w*w + d*d)}" iyz="0"
+             izz="${(m/12.0) * (w*w + h*h)}"/>
+  </xacro:macro>
+
+  <xacro:macro name="solid_cylinder_inertia" params="m r h">
+    <inertia ixx="${(m/12.0) * (3*r*r + h*h)}" ixy="0" ixz="0"
+             iyy="${(m/12.0) * (3*r*r + h*h)}" iyz="0"
+             izz="${(m*r*r)/2.0}"/>
+  </xacro:macro>
 </robot>
