@@ -1,0 +1,27 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: rover_kachau
+    relative_path: robots/robot.urdf.xacro
+  srdf:
+    relative_path: config/robot.srdf
+  package_settings:
+    author_name: Rebeca Castilla Puerta
+    author_email: r.castilla.2023@alumnos.urjc.es
+    generated_timestamp: 1777657276
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+      - effort
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+      - effort

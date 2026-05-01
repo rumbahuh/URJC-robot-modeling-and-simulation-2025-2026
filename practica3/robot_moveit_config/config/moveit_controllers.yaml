@@ -1,0 +1,21 @@
+# MoveIt uses this configuration for controller management
+
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+moveit_simple_controller_manager:
+  controller_names:
+    - scara_controller
+    - gripper_controller
+
+  scara_controller:
+    type: FollowJointTrajectory
+    joints:
+      - _link2_link_joint
+      - _link3_link_joint
+      - _rot_link4_link_joint
+      - _pris_link4_link_joint
+  gripper_controller:
+    type: FollowJointTrajectory
+    joints:
+      - _pris_link4.001_link_joint
+      - _pris_link4.002_link_joint

@@ -1,0 +1,9 @@
+# Default initial positions for robot's ros2_control fake system
+
+initial_positions:
+  _link2_link_joint: 0
+  _link3_link_joint: 0
+  _pris_link4.001_link_joint: 0
+  _pris_link4.002_link_joint: 0
+  _pris_link4_link_joint: 0
+  _rot_link4_link_joint: 0
