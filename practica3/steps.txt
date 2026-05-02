@@ -79,3 +79,56 @@ rumbahuh@stokibot:~/ros2_ws$
 
 rumbahuh@stokibot:~/ros2_ws$ ros2 launch rover_kachau robot_state_publisher.launch.py
 
+-------------- SEGUNDA PARTE
+cada vez que cambie de terminal tengo que hacer un source!!
+rumbahuh@stokibot:~/ros2_ws$ source ~/ros2_ws/install/setup.bash
+rumbahuh@stokibot:~/ros2_ws$ ros2 launch rover_kachau robot_gazebo.launch.py world_name:=urjc_excavation_msr
+
+rumbahuh@stokibot:~/ros2_ws$ source ~/ros2_ws/install/setup.bash
+rumbahuh@stokibot:~/ros2_ws$ ros2 launch robot_moveit_config move_group.launch.py
+
+rumbahuh@stokibot:~/ros2_ws$ source ~/ros2_ws/install/setup.bash
+rumbahuh@stokibot:~/ros2_ws$ ros2 launch rover_kachau robot_controllers.launch.py
+[INFO] [launch]: All log files can be found below /home/rumbahuh/.ros/log/2026-05-02-10-45-03-287618-stokibot-30159
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [spawner-1]: process started with pid [30184]
+[INFO] [spawner-2]: process started with pid [30185]
+[INFO] [spawner-3]: process started with pid [30186]
+[INFO] [spawner-4]: process started with pid [30187]
+[spawner-1] [INFO] [1777711504.778658773] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-1] [WARN] [1777711514.787169710] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+ESTE ESTA ROTO NO SE POR QUE
+
+
+TUVE QUE HACER COLCON BUILD DE robot_moveit_confic, urjc-excavation-world, etc e instalar twist:
+
+colcon build --symlink-install --packages-select rover_kachau
+ 2014  source install/setup.bash
+ 2015  ros2 launch rover_kachau robot_gazebo.launch.py world_name:=urjc_excavation_msr
+ 2016  olcon build --symlink-install --packages-select robot_moveit_config
+ 2017  colcon build --symlink-install --packages-select robot_moveit_config
+ 2018  source install/setup.bash
+ 2019  ros2 launch rover_kachau robot_gazebo.launch.py world_name:=urjc_excavation_msr
+ 2020  clear
+ 2021  cat ~/ros2_ws/src/urjc-excavation-world/package.xml | grep "<name>"
+ 2022  colcon build --symlink-install --packages-select urjc_excavation_world
+ 2023  source install/setup.bash
+ 2024  clear
+ 2025  ros2 launch rover_kachau robot_gazebo.launch.py world_name:=urjc_excavation_msr
+ 2026  clear
+ 2027  cd ..
+ 2028  sudo apt install ros-jazzy-twist-stamper
+ 2029  clear
+ 2030  cd ros2_ws/
+ 2031  ros2 launch rover_kachau robot_gazebo.launch.py world_name:=urjc_excavation_msr
+ 2032  colcon build --symlink-install --packages-select rover_kachau
+ 2033  source install/setup.bash
+ 2034  ros2 launch rover_kachau robot_gazebo.launch.py world_name:=urjc_excavation_msr
+
+
+
+
+
+
+
+

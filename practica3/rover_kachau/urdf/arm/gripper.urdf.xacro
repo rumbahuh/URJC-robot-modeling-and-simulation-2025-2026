@@ -12,7 +12,7 @@
 
     <joint name="${prefix}_pris_link4.001_link_joint" type="prismatic">
       <limit lower="0.00000" upper="0.20000" effort="0.00000" velocity="0.00000"/>
-      <origin rpy="0 0 3.14159" xyz="0.34568 0.00059 0.07033"/>
+      <origin rpy="0 1.5708 3.14159" xyz="0.34568 0.00059 0.07033"/>
       <parent link="${prefix}_pris_link4_link"/>
       <child link="${prefix}_pris_link4.001_link"/>
       <axis xyz="0 0 1"/>
@@ -20,7 +20,7 @@
 
     <joint name="${prefix}_pris_link4.002_link_joint" type="prismatic">
       <limit lower="0.00000" upper="0.20000" effort="0.00000" velocity="0.00000"/>
-      <origin rpy="3.14159 3.14159 -3.14159" xyz="-0.34568 0.00059 0.07033"/>
+      <origin rpy="3.14159 1.5708 -3.14159" xyz="-0.34568 0.00059 0.07033"/>
       <parent link="${prefix}_pris_link4_link"/>
       <child link="${prefix}_pris_link4.002_link"/>
       <axis xyz="0 0 1"/>
@@ -61,7 +61,7 @@
       </inertial>
       <visual name="pris_link4.001">
         <material name="Material.003"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <origin rpy="0 -1.5708 0" xyz="0 0 0"/>
         <geometry>
           <mesh filename="package://rover_kachau/meshes/dae/Cylinder.009.dae" scale="0.03922 0.03922 0.61477"/>
         </geometry>
@@ -70,7 +70,7 @@
 
     <link name="${prefix}_pris_link4.002_link">
       <collision name="pris_link4.002_collision">
-        <origin rpy="-3.14159 -3.14159 0" xyz="0 0 0"/>
+        <origin rpy="0 -1.5708 3.14159" xyz="0 0 0"/>
         <geometry>
           <box size="0.02510 0.06000 0.09410"/>
         </geometry>
@@ -82,7 +82,7 @@
       </inertial>
       <visual name="pris_link4.002">
         <material name="Material.004"/>
-        <origin rpy="0 0 3.14159" xyz="0 0 0"/>
+        <origin rpy="0 -1.5708 3.14159" xyz="0 0 0"/>
         <geometry>
           <mesh filename="package://rover_kachau/meshes/dae/Cylinder.010.dae" scale="0.03922 0.03922 0.61477"/>
         </geometry>

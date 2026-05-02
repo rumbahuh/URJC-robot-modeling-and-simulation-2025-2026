@@ -9,32 +9,26 @@ default_acceleration_scaling_factor: 0.1
 # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
 joint_limits:
   _link2_link_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_velocity_limits: true
+    has_acceleration_limits: true
+    max_acceleration: 10.0
   _link3_link_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_velocity_limits: true
+    has_acceleration_limits: true
+    max_acceleration: 10.0
   _pris_link4.001_link_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_velocity_limits: true
+    has_acceleration_limits: true
+    max_acceleration: 10.0
   _pris_link4.002_link_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_velocity_limits: true
+    has_acceleration_limits: true
+    max_acceleration: 10.0
   _pris_link4_link_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_velocity_limits: true
+    has_acceleration_limits: true
+    max_acceleration: 10.0
   _rot_link4_link_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
+    has_velocity_limits: true
+    has_acceleration_limits: true
+    max_acceleration: 10.0
