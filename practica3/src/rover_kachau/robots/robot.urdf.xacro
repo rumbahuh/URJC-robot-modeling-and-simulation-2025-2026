@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- argumentos -->
+	<xacro:arg name="robot_ns" default=""/>
+	<xacro:arg name="prefix" default=""/>
+	<xacro:arg name="config_controllers" default="$(find rover_kachau)/config/rover_controllers.yaml"/>
+
+	<!-- Propiedades -->
+	<xacro:property name="PI" value="3.1415926535897931"/>
+	<xacro:property name="wheel_offset_x" value="0.95"/>
+	<xacro:property name="wheel_offset_y" value="0.95"/>
+	<xacro:property name="wheel_offset_z" value="-0.38"/>
+	<xacro:property name="arm_offset_x" value="0.0"/>
+	<xacro:property name="arm_offset_y" value="0.82"/>
+	<xacro:property name="arm_offset_z" value="0.69"/>
+	
+	<!-- includes -->
+	<xacro:include filename="$(find rover_kachau)/urdf/utils/utils.urdf.xacro"/>
+	<xacro:include filename="$(find rover_kachau)/urdf/base/robot_base.urdf.xacro"/>
+	<xacro:include filename="$(find rover_kachau)/urdf/wheels/rover_wheel.urdf.xacro"/>
+	<xacro:include filename="$(find rover_kachau)/urdf/arm/gripper.urdf.xacro"/>
+	<xacro:include filename="$(find rover_kachau)/urdf/arm/scara.urdf.xacro"/>
+	<xacro:include filename="$(find rover_kachau)/urdf/sensors/sensors.urdf.xacro"/>
+	<xacro:include filename="$(find rover_kachau)/urdf/tank/rover_tank.urdf.xacro"/>
+	<xacro:include filename="$(find rover_kachau)/urdf/ros2_control.urdf.xacro"/>
+
+	<!-- Base -->
+	<xacro:robot_base prefix="$(arg prefix)"/>
+
+	<!-- Wheels -->
+	<xacro:rover_wheel prefix="wheels_" parent_link="base_link"/>
+
+	<!-- Tank -->
+	<xacro:tank prefix="tank_" parent_link="base_link"/>
+
+	<!-- Arm -->
+	<xacro:scara prefix="" parent_link="base_link"/>
+	<xacro:gripper prefix="" parent_link="_rot_link4_link"/>
+	<xacro:arg name="update_rate" default="20"/>
+	<xacro:ros2_control/>
+</robot>

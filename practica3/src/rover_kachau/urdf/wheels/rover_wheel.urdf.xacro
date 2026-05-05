@@ -329,7 +329,7 @@
       </visual>
     </link>
 
-    <!-- Añadimos transmission para juntar todas as joints -->
+    <!-- Añadimos transmission para juntar todas las joints -->
     <transmission name="${prefix}_frontL_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}_frontL_link_joint">
