@@ -10,6 +10,8 @@ moveit_simple_controller_manager:
 
   scara_controller:
     type: FollowJointTrajectory
+    action_ns: follow_joint_trajectory
+    default: true
     joints:
       - _link2_link_joint
       - _link3_link_joint
@@ -17,6 +19,8 @@ moveit_simple_controller_manager:
       - _pris_link4_link_joint
   gripper_controller:
     type: FollowJointTrajectory
+    action_ns: follow_joint_trajectory
+    default: true
     joints:
       - _pris_link4.001_link_joint
       - _pris_link4.002_link_joint

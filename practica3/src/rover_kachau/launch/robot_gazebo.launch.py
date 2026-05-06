@@ -99,10 +99,10 @@ def generate_launch_description():
             "-model", "robot",
             "-topic", "robot_description",
             "-use_sim_time", "True",
-            "-z", "0.5",      # altura para que no aparezca bajo el suelo
+            "-z", "0.01",
             "-R", "0",
             "-P", "0",
-            "-Y", "1.5708",   # 90° en Z para orientar correctamente
+            "-Y", "1.5708",
         ],
     )
 
