@@ -3,7 +3,7 @@
   <xacro:macro name="gripper" params="prefix parent_link">
 
     <joint name="${prefix}_pris_link4_link_joint" type="prismatic">
-      <limit lower="-0.130" upper="2" effort="0.00000" velocity="0.00000"/>
+      <limit lower="-0.130" upper="2" effort="10.0" velocity="10.0"/>
       <origin rpy="3.14159 0 -1.5708" xyz="0 0 0"/>
       <parent link="${parent_link}"/>
       <child link="${prefix}_pris_link4_link"/>
@@ -11,7 +11,7 @@
     </joint>
 
     <joint name="${prefix}_pris_link4.001_link_joint" type="prismatic">
-      <limit lower="0.00000" upper="0.20000" effort="0.00000" velocity="0.00000"/>
+      <limit lower="0.00000" upper="0.20000" effort="10.0" velocity="10.0"/>
       <origin rpy="0 1.5708 3.14159" xyz="0.34568 0.00059 0.07033"/>
       <parent link="${prefix}_pris_link4_link"/>
       <child link="${prefix}_pris_link4.001_link"/>
@@ -19,7 +19,7 @@
     </joint>
 
     <joint name="${prefix}_pris_link4.002_link_joint" type="prismatic">
-      <limit lower="0.00000" upper="0.20000" effort="0.00000" velocity="0.00000"/>
+      <limit lower="0.00000" upper="0.20000" effort="10.0" velocity="10.0"/>
       <origin rpy="3.14159 1.5708 -3.14159" xyz="-0.34568 0.00059 0.07033"/>
       <parent link="${prefix}_pris_link4_link"/>
       <child link="${prefix}_pris_link4.002_link"/>

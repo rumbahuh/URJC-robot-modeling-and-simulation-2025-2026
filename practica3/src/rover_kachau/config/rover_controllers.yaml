@@ -22,7 +22,7 @@ rover_base_control:
     wheel_radius: 0.30
     wheel_separation_multiplier: 1.0
     left_wheel_radius_multiplier: 1.0
-    right_wheel_radius_multiplier: -1.0
+    right_wheel_radius_multiplier: 1.0
     base_frame_id: base_footprint
     enable_odom_tf: true
     publish_limited_velocity: true

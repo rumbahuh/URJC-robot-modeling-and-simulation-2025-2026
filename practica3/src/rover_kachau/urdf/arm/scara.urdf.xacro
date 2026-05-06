@@ -16,7 +16,7 @@
     </joint>
 
     <joint name="${prefix}_link2_link_joint" type="continuous">
-      <limit effort="0.00000" velocity="0.00000"/>
+      <limit effort="10.0" velocity="10.0"/>
       <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.00000 -0.00000 0.00000"/>
       <parent link="${prefix}_link1_link"/>
       <child link="${prefix}_link2_link"/>
@@ -24,7 +24,7 @@
     </joint>
 
     <joint name="${prefix}_link3_link_joint" type="revolute">
-      <limit lower="-3.14000" upper="3.14000" effort="0.00000" velocity="0.00000"/>
+      <limit lower="-3.14000" upper="3.14000" effort="10.0" velocity="10.0"/>
       <origin rpy="0.00000 0.00000 1.57080" xyz="0.96320 -0.00000 0.06102"/>
       <parent link="${prefix}_link2_link"/>
       <child link="${prefix}_link3_link"/>
@@ -32,7 +32,7 @@
     </joint>
 
     <joint name="${prefix}_rot_link4_link_joint" type="continuous">
-      <limit effort="0.00000" velocity="0.00000"/>
+      <limit effort="10.0" velocity="10.0"/>
       <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.99849 0.00559 -0.52727"/>
       <parent link="${prefix}_link3_link"/>
       <child link="${prefix}_rot_link4_link"/>

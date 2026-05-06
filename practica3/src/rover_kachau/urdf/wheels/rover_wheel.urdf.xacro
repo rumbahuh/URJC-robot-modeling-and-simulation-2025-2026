@@ -23,7 +23,7 @@
     </joint>
 
     <joint name="${prefix}_frontL_link_joint" type="continuous">
-      <limit effort="0.00000" velocity="0.00000"/>
+      <limit effort="1000.0" velocity="100.0"/>
       <origin rpy="1.56418 -0.93639 3.12224" xyz="-0.02187 -0.29773 -0.28847"/>
       <parent link="${prefix}_armFrontL_link"/>
       <child link="${prefix}_frontL_link"/>
@@ -38,7 +38,7 @@
     </joint>
 
     <joint name="${prefix}_frontR_link_joint" type="continuous">
-      <limit effort="0.00000" velocity="0.00000"/>
+      <limit effort="1000.0" velocity="100.0"/>
       <origin rpy="1.56418 -0.93639 3.12224" xyz="-0.02187 0.29825 -0.28847"/>
       <parent link="${prefix}_armFrontR_link"/>
       <child link="${prefix}_frontR_link"/>
@@ -53,7 +53,7 @@
     </joint>
 
     <joint name="${prefix}_backL_link_joint" type="continuous">
-      <limit effort="0.00000" velocity="0.00000"/>
+      <limit effort="1000.0" velocity="100.0"/>
       <origin rpy="-1.60020 -0.56075 0.01354" xyz="0.02187 -0.29773 -0.28847"/>
       <parent link="${prefix}_armBackL_link"/>
       <child link="${prefix}_backL_link"/>
@@ -68,7 +68,7 @@
     </joint>
 
     <joint name="${prefix}_backR_link_joint" type="continuous">
-      <limit effort="0.00000" velocity="0.00000"/>
+      <limit effort="1000.0" velocity="100.0"/>
       <origin rpy="-1.60020 -0.56075 0.01354" xyz="0.02187 0.29825 -0.28847"/>
       <parent link="${prefix}_armBackR_link"/>
       <child link="${prefix}_backR_link"/>
