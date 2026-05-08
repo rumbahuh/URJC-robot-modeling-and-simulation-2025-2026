@@ -1,96 +1,95 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="gripper" params="prefix parent_link">
+<xacro:macro name="gripper" params="prefix parent_link">
+  <joint name="${prefix}_pris_link4_link_joint" type="prismatic">
+    <limit lower="-0.130" upper="2" effort="100.0" velocity="10.0"/>
+    <dynamics damping="5.0" friction="1.0"/>
+    <origin rpy="3.14159 0 -1.5708" xyz="0 0 0"/>
+    <parent link="${parent_link}"/>
+    <child link="${prefix}_pris_link4_link"/>
+    <axis xyz="0 0 1"/>
+  </joint>
 
-    <joint name="${prefix}_pris_link4_link_joint" type="prismatic">
-      <limit lower="-0.130" upper="2" effort="10.0" velocity="10.0"/>
-      <dynamics damping="50.0" friction="10.0"/>
-      <origin rpy="3.14159 0 -1.5708" xyz="0 0 0"/>
-      <parent link="${parent_link}"/>
-      <child link="${prefix}_pris_link4_link"/>
-      <axis xyz="0 0 1"/>
-    </joint>
+  <joint name="${prefix}_pris_link4.001_link_joint" type="prismatic">
+    <limit lower="0.00000" upper="0.20000" effort="100.0" velocity="1.0"/>
+    <dynamics damping="10.0" friction="10.0"/>
+    <origin rpy="0 1.5708 3.14159" xyz="0.34568 0.00059 0.07033"/>
+    <parent link="${prefix}_pris_link4_link"/>
+    <child link="${prefix}_pris_link4.001_link"/>
+    <axis xyz="0 0 1"/>
+  </joint>
 
-    <joint name="${prefix}_pris_link4.001_link_joint" type="prismatic">
-      <limit lower="0.00000" upper="0.20000" effort="100.0" velocity="1.0"/>
-      <dynamics damping="10.0" friction="10.0"/>
-      <origin rpy="0 1.5708 3.14159" xyz="0.34568 0.00059 0.07033"/>
-      <parent link="${prefix}_pris_link4_link"/>
-      <child link="${prefix}_pris_link4.001_link"/>
-      <axis xyz="0 0 1"/>
-    </joint>
+  <joint name="${prefix}_pris_link4.002_link_joint" type="prismatic">
+    <limit lower="-0.001" upper="0.20000" effort="100.0" velocity="1.0"/>
+    <dynamics damping="10.0" friction="10.0"/>
+    <origin rpy="3.14159 1.5708 -3.14159" xyz="-0.34568 0.00059 0.07033"/>
+    <parent link="${prefix}_pris_link4_link"/>
+    <child link="${prefix}_pris_link4.002_link"/>
+    <axis xyz="0 0 1"/>
+  </joint>
 
-    <joint name="${prefix}_pris_link4.002_link_joint" type="prismatic">
-      <limit lower="-0.001" upper="0.20000" effort="100.0" velocity="1.0"/>
-      <dynamics damping="10.0" friction="10.0"/>
-      <origin rpy="3.14159 1.5708 -3.14159" xyz="-0.34568 0.00059 0.07033"/>
-      <parent link="${prefix}_pris_link4_link"/>
-      <child link="${prefix}_pris_link4.002_link"/>
-      <axis xyz="0 0 1"/>
-    </joint>
+  <link name="${prefix}_pris_link4_link">
+    <collision name="pris_link4_collision">
+      <origin rpy="-3.14159 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rover_kachau/meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00071" ixy="0.00000" ixz="-0.00000" iyy="0.00072" iyz="0.00000" izz="0.00001"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.00100"/>
+    </inertial>
+    <visual name="pris_link4">
+      <material name="Material.004"/>
+      <origin rpy="-3.14159 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rover_kachau/meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </visual>
+  </link>
 
-    <link name="${prefix}_pris_link4_link">
-      <collision name="pris_link4_collision">
-        <origin rpy="-3.14159 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
-        </geometry>
-      </collision>
-      <inertial>
-        <inertia ixx="0.00071" ixy="0.00000" ixz="-0.00000" iyy="0.00072" iyz="0.00000" izz="0.00001"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="0.00100"/>
-      </inertial>
-      <visual name="pris_link4">
-        <material name="Material.004"/>
-        <origin rpy="-3.14159 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.013.dae" scale="0.03922 0.03922 0.61477"/>
-        </geometry>
-      </visual>
-    </link>
+  <link name="${prefix}_pris_link4.001_link">
+    <collision name="pris_link4.001_collision">
+      <origin rpy="0 -1.5708 0" xyz="0 0 0"/>  <!-- alineado con el visual -->
+      <geometry>
+        <box size="0.02510 0.06000 0.09410"/>  <!-- orden original, rotación corrige los ejes -->
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00052" ixy="0.00000" ixz="0.00000" iyy="0.00040" iyz="0.00000" izz="0.00018"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.50000"/>
+    </inertial>
+    <visual name="pris_link4.001">
+      <material name="Material.003"/>
+      <origin rpy="0 -1.5708 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rover_kachau/meshes/dae/Cylinder.009.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </visual>
+  </link>
 
-    <link name="${prefix}_pris_link4.001_link">
-      <collision name="pris_link4.001_collision">
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <box size="0.02510 0.06000 0.09410"/>
-        </geometry>
-      </collision>
-      <inertial>
-        <inertia ixx="0.00052" ixy="0.00000" ixz="0.00000" iyy="0.00040" iyz="0.00000" izz="0.00018"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="0.50000"/>
-      </inertial>
-      <visual name="pris_link4.001">
-        <material name="Material.003"/>
-        <origin rpy="0 -1.5708 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.009.dae" scale="0.03922 0.03922 0.61477"/>
-        </geometry>
-      </visual>
-    </link>
+  <link name="${prefix}_pris_link4.002_link">
+    <collision name="pris_link4.002_collision">
+      <origin rpy="0 -1.5708 3.14159" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.02510 0.06000 0.09410"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.00052" ixy="-0.00000" ixz="0.00000" iyy="0.00040" iyz="-0.00000" izz="0.00018"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.00100"/>
+    </inertial>
+    <visual name="pris_link4.002">
+      <material name="Material.004"/>
+      <origin rpy="0 -1.5708 3.14159" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rover_kachau/meshes/dae/Cylinder.010.dae" scale="0.03922 0.03922 0.61477"/>
+      </geometry>
+    </visual>
+  </link>
 
-    <link name="${prefix}_pris_link4.002_link">
-      <collision name="pris_link4.002_collision">
-        <origin rpy="0 -1.5708 3.14159" xyz="0 0 0"/>
-        <geometry>
-          <box size="0.02510 0.06000 0.09410"/>
-        </geometry>
-      </collision>
-      <inertial>
-        <inertia ixx="0.00052" ixy="-0.00000" ixz="0.00000" iyy="0.00040" iyz="-0.00000" izz="0.00018"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="0.00100"/>
-      </inertial>
-      <visual name="pris_link4.002">
-        <material name="Material.004"/>
-        <origin rpy="0 -1.5708 3.14159" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://rover_kachau/meshes/dae/Cylinder.010.dae" scale="0.03922 0.03922 0.61477"/>
-        </geometry>
-      </visual>
-    </link>
-
-  </xacro:macro>
+</xacro:macro>
 </robot>

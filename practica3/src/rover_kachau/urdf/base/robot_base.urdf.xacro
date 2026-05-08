@@ -1,18 +1,22 @@
 <?xml version="1.0"?>
 <robot name="rover" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="robot_base" params="prefix">
+
     <joint name="${prefix}base_footprint_joint" type="fixed">
       <parent link="${prefix}base_footprint"/>
       <child link="${prefix}base_link"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
+
     <joint name="${prefix}base_to_chassis" type="fixed">
       <parent link="${prefix}base_link"/>
       <child link="${prefix}chassis_link"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
+
     <link name="${prefix}base_footprint"/>
     <link name="${prefix}base_link"/>
+
     <link name="${prefix}chassis_link">
       <collision name="chassis_collision">
         <origin rpy="0.00000 0.00000 0.00000" xyz="0.00852 0.22069 0.34429"/>
@@ -51,5 +55,6 @@
         <material name="Material.004"/>
       </visual>
     </link>
+
   </xacro:macro>
 </robot>

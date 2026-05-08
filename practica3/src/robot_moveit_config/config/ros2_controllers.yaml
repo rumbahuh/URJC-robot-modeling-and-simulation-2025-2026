@@ -2,20 +2,20 @@
 controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
+    use_sim_time: true
 
     scara_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
-
     gripper_controller:
       type: joint_trajectory_controller/JointTrajectoryController
-
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
 scara_controller:
   ros__parameters:
+    use_sim_time: true
     joints:
       - _link2_link_joint
       - _link3_link_joint
@@ -26,9 +26,12 @@ scara_controller:
     state_interfaces:
       - position
       - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+    action_ns: follow_joint_trajectory
 
 gripper_controller:
   ros__parameters:
+    use_sim_time: true
     joints:
       - _pris_link4.001_link_joint
       - _pris_link4.002_link_joint
@@ -37,3 +40,5 @@ gripper_controller:
     state_interfaces:
       - position
       - velocity
+    allow_nonzero_velocity_at_trajectory_end: true
+    action_ns: follow_joint_trajectory

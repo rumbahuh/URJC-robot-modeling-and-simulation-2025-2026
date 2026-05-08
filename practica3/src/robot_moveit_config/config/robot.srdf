@@ -35,25 +35,25 @@
         <joint name="_pris_link4.002_link_joint" value="0"/>
     </group_state>
     <group_state name="cerrado" group="gripper">
-        <joint name="_pris_link4.001_link_joint" value="0.12"/>
-        <joint name="_pris_link4.002_link_joint" value="0.12"/>
+        <joint name="_pris_link4.001_link_joint" value="0.13"/>
+        <joint name="_pris_link4.002_link_joint" value="0.13"/>
     </group_state>
     <group_state name="halt" group="scara">
         <joint name="_link2_link_joint" value="-1.58"/>
         <joint name="_link3_link_joint" value="1.5787"/>
-        <joint name="_pris_link4_link_joint" value="0"/>
+        <joint name="_pris_link4_link_joint" value="-0.15"/>
         <joint name="_rot_link4_link_joint" value="0"/>
     </group_state>
     <group_state name="descanso" group="scara">
         <joint name="_link2_link_joint" value="0"/>
         <joint name="_link3_link_joint" value="0"/>
-        <joint name="_pris_link4_link_joint" value="0"/>
+        <joint name="_pris_link4_link_joint" value="-0.15"/>
         <joint name="_rot_link4_link_joint" value="0"/>
     </group_state>
     <group_state name="target" group="scara">
         <joint name="_link2_link_joint" value="-1.58"/>
         <joint name="_link3_link_joint" value="1.5787"/>
-        <joint name="_pris_link4_link_joint" value="1.8352"/>
+        <joint name="_pris_link4_link_joint" value="1.83"/>
         <joint name="_rot_link4_link_joint" value="0"/>
     </group_state>
     <group_state name="lobby" group="scara">
@@ -65,8 +65,20 @@
     <group_state name="release" group="scara">
         <joint name="_link2_link_joint" value="2.5861"/>
         <joint name="_link3_link_joint" value="-0.3643"/>
-        <joint name="_pris_link4_link_joint" value="0.0701"/>
+        <joint name="_pris_link4_link_joint" value="0.2"/>
         <joint name="_rot_link4_link_joint" value="-2.2737"/>
+    </group_state>
+    <group_state name="punto_aprox_release" group="scara">
+        <joint name="_link2_link_joint" value="2.5861"/>
+        <joint name="_link3_link_joint" value="-0.3643"/>
+        <joint name="_pris_link4_link_joint" value="-0.15"/>
+        <joint name="_rot_link4_link_joint" value="-2.2737"/>
+    </group_state>
+    <group_state name="punto_aprox_place" group="scara">
+        <joint name="_link2_link_joint" value="-1.58"/>
+        <joint name="_link3_link_joint" value="1.5787"/>
+        <joint name="_pris_link4_link_joint" value="1.2"/>
+        <joint name="_rot_link4_link_joint" value="0"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="gripper" parent_link="_pris_link4_link" group="gripper" parent_group="scara"/>

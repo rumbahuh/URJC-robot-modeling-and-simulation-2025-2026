@@ -9,6 +9,7 @@
   <ros2_control name="rover_interface" type="system">
     <hardware>
       <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      <param name="position_proportional_gain">5.0</param>
     </hardware>
 
     <joint name="wheels__frontL_link_joint">
